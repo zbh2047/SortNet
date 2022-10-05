@@ -1,0 +1,1118 @@
+dataset = TinyImageNet
+model = SortHybridModel(depth=7,width=5120,hidden=512,scalar=True,dropout=0.7)
+loss = ce_hinge(lam0=1.0,lam_end=0.01)
+p_start = 8.0
+p_end = 1000.0
+eps_train = 0.00431
+eps_test = 0.00392
+eps_smooth = 0.4
+epochs = 0,500,100,980,1000
+decays = None
+batch_size = 512
+lr = 0.02
+wd = 0.02
+beta1 = 0.9
+beta2 = 0.99
+epsilon = 1e-10
+start_epoch = 0
+checkpoint = None
+gpu = 0
+dist_url = tcp://localhost:23456
+world_size = 1
+rank = 0
+print_freq = 200
+result_dir = result
+filter_name = 
+seed = 2021
+visualize = False
+Compose(
+    RandomCrop(size=(64, 64), padding=5)
+    RandomHorizontalFlip(p=0.5)
+    ToTensor()
+    Normalize(mean=[0.4802 0.4481 0.3975], std=[0.2276, 0.2276, 0.2276])
+)
+SortHybridModel(
+  (fc_dist): BoundSequential(
+    (0): NormDist(
+      in_features=12288, out_features=5120, bias=False
+      (mean_shift): MeanShiftDropout(5120, affine=False)
+    )
+    (1): NormDist(
+      in_features=5120, out_features=5120, bias=False
+      (mean_shift): MeanShiftDropout(5120, affine=False)
+    )
+    (2): NormDist(
+      in_features=5120, out_features=5120, bias=False
+      (mean_shift): MeanShiftDropout(5120, affine=False)
+    )
+    (3): NormDist(
+      in_features=5120, out_features=5120, bias=False
+      (mean_shift): MeanShiftDropout(5120, affine=False)
+    )
+    (4): NormDist(
+      in_features=5120, out_features=5120, bias=False
+      (mean_shift): MeanShiftDropout(5120, affine=False)
+    )
+  )
+  (fc_linear): BoundSequential(
+    (0): BoundLinear(in_features=5120, out_features=512, bias=True)
+    (1): BoundTanh()
+  )
+  (fc_final): BoundFinalLinear(in_features=512, out_features=200, bias=True)
+)
+number of params:  170496713
+Epoch 0:  train loss 5.3039   train acc 0.0062   worst 0.0062   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.01
+Epoch 1:  train loss 5.1357   train acc 0.0148   worst 0.0148   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 29.86
+Epoch 2:  train loss 4.9223   train acc 0.0296   worst 0.0296   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 29.91
+Epoch 3:  train loss 4.7822   train acc 0.0443   worst 0.0443   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 29.94
+Epoch 4:  train loss 4.6520   train acc 0.0585   worst 0.0585   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.10
+Epoch 5:  train loss 4.5746   train acc 0.0683   worst 0.0683   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.05
+Epoch 6:  train loss 4.5149   train acc 0.0757   worst 0.0757   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.03
+Epoch 7:  train loss 4.4589   train acc 0.0831   worst 0.0831   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.05
+Epoch 8:  train loss 4.4034   train acc 0.0903   worst 0.0903   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.02
+Epoch 9:  train loss 4.3536   train acc 0.0983   worst 0.0983   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.12
+Epoch 10:  train loss 4.3078   train acc 0.1046   worst 0.1046   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.22
+Epoch 11:  train loss 4.2654   train acc 0.1110   worst 0.1110   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.03
+Epoch 12:  train loss 4.2250   train acc 0.1176   worst 0.1176   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.06
+Epoch 13:  train loss 4.1872   train acc 0.1215   worst 0.1215   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.17
+Epoch 14:  train loss 4.1568   train acc 0.1263   worst 0.1263   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.02
+Epoch 15:  train loss 4.1231   train acc 0.1330   worst 0.1330   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.14
+Epoch 16:  train loss 4.0923   train acc 0.1376   worst 0.1376   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.20
+Epoch 17:  train loss 4.0642   train acc 0.1405   worst 0.1405   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.14
+Epoch 18:  train loss 4.0315   train acc 0.1469   worst 0.1469   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.16
+Epoch 19:  train loss 4.0030   train acc 0.1521   worst 0.1521   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.16
+Epoch 20:  train loss 3.9835   train acc 0.1550   worst 0.1550   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.15
+Epoch 21:  train loss 3.9583   train acc 0.1591   worst 0.1591   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.11
+Epoch 22:  train loss 3.9382   train acc 0.1626   worst 0.1626   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.20
+Epoch 23:  train loss 3.9140   train acc 0.1672   worst 0.1672   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.10
+Epoch 24:  train loss 3.8988   train acc 0.1689   worst 0.1689   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.11
+Epoch 25:  train loss 3.8829   train acc 0.1723   worst 0.1723   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.15
+Epoch 26:  train loss 3.8595   train acc 0.1775   worst 0.1775   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.23
+Epoch 27:  train loss 3.8452   train acc 0.1794   worst 0.1794   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.31
+Epoch 28:  train loss 3.8255   train acc 0.1839   worst 0.1839   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.18
+Epoch 29:  train loss 3.8152   train acc 0.1837   worst 0.1837   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.10
+Epoch 30:  train loss 3.7962   train acc 0.1875   worst 0.1875   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.17
+Epoch 31:  train loss 3.7844   train acc 0.1899   worst 0.1899   lr 0.0200   p 8.00   eps 0.0000   mix 1.0000   time 30.08
+Epoch 32:  train loss 3.7674   train acc 0.1923   worst 0.1923   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.28
+Epoch 33:  train loss 3.7601   train acc 0.1950   worst 0.1950   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.07
+Epoch 34:  train loss 3.7471   train acc 0.1960   worst 0.1960   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.03
+Epoch 35:  train loss 3.7308   train acc 0.1998   worst 0.1996   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.25
+Epoch 36:  train loss 3.7215   train acc 0.2001   worst 0.2000   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.22
+Epoch 37:  train loss 3.7159   train acc 0.2041   worst 0.2040   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.17
+Epoch 38:  train loss 3.7042   train acc 0.2042   worst 0.2041   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.28
+Epoch 39:  train loss 3.7013   train acc 0.2057   worst 0.2055   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.29
+Epoch 40:  train loss 3.6876   train acc 0.2067   worst 0.2066   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.25
+Epoch 41:  train loss 3.6787   train acc 0.2079   worst 0.2077   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.18
+Epoch 42:  train loss 3.6717   train acc 0.2098   worst 0.2096   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.27
+Epoch 43:  train loss 3.6606   train acc 0.2119   worst 0.2117   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.22
+Epoch 44:  train loss 3.6547   train acc 0.2139   worst 0.2136   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.13
+Epoch 45:  train loss 3.6491   train acc 0.2142   worst 0.2139   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.12
+Epoch 46:  train loss 3.6388   train acc 0.2160   worst 0.2157   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.39
+Epoch 47:  train loss 3.6270   train acc 0.2177   worst 0.2175   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.39
+Epoch 48:  train loss 3.6221   train acc 0.2199   worst 0.2197   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.21
+Epoch 49:  train loss 3.6150   train acc 0.2200   worst 0.2196   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.28
+Epoch 50:  train loss 3.6043   train acc 0.2230   worst 0.2226   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.32
+Epoch 51:  train loss 3.6021   train acc 0.2242   worst 0.2237   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.24
+Epoch 52:  train loss 3.5939   train acc 0.2262   worst 0.2257   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.31
+Epoch 53:  train loss 3.5881   train acc 0.2256   worst 0.2250   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.23
+Epoch 54:  train loss 3.5815   train acc 0.2280   worst 0.2273   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.43
+Epoch 55:  train loss 3.5730   train acc 0.2302   worst 0.2294   lr 0.0199   p 8.00   eps 0.0000   mix 1.0000   time 30.25
+Epoch 56:  train loss 3.5698   train acc 0.2293   worst 0.2286   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.31
+Epoch 57:  train loss 3.5626   train acc 0.2320   worst 0.2311   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.21
+Epoch 58:  train loss 3.5551   train acc 0.2314   worst 0.2307   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.38
+Epoch 59:  train loss 3.5509   train acc 0.2339   worst 0.2331   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.39
+Epoch 60:  train loss 3.5477   train acc 0.2353   worst 0.2343   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.24
+Epoch 61:  train loss 3.5333   train acc 0.2388   worst 0.2377   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.23
+Epoch 62:  train loss 3.5349   train acc 0.2370   worst 0.2360   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.40
+Epoch 63:  train loss 3.5287   train acc 0.2383   worst 0.2371   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.27
+Epoch 64:  train loss 3.5236   train acc 0.2401   worst 0.2389   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.30
+Epoch 65:  train loss 3.5172   train acc 0.2415   worst 0.2404   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.31
+Epoch 66:  train loss 3.5132   train acc 0.2399   worst 0.2386   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.36
+Epoch 67:  train loss 3.5061   train acc 0.2422   worst 0.2407   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.45
+Epoch 68:  train loss 3.4989   train acc 0.2421   worst 0.2406   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.52
+Epoch 69:  train loss 3.4913   train acc 0.2435   worst 0.2417   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.38
+Epoch 70:  train loss 3.4941   train acc 0.2450   worst 0.2429   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.32
+Epoch 71:  train loss 3.4905   train acc 0.2442   worst 0.2422   lr 0.0198   p 8.00   eps 0.0000   mix 1.0000   time 30.37
+Epoch 72:  train loss 3.4823   train acc 0.2445   worst 0.2426   lr 0.0197   p 8.00   eps 0.0000   mix 1.0000   time 30.47
+Epoch 73:  train loss 3.4800   train acc 0.2472   worst 0.2449   lr 0.0197   p 8.00   eps 0.0000   mix 1.0000   time 30.40
+Epoch 74:  train loss 3.4743   train acc 0.2492   worst 0.2469   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.26
+Epoch 75:  train loss 3.4711   train acc 0.2484   worst 0.2462   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.31
+Epoch 76:  train loss 3.4665   train acc 0.2513   worst 0.2482   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.33
+Epoch 77:  train loss 3.4620   train acc 0.2495   worst 0.2464   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.23
+Epoch 78:  train loss 3.4569   train acc 0.2528   worst 0.2497   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.30
+Epoch 79:  train loss 3.4524   train acc 0.2521   worst 0.2489   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.33
+Epoch 80:  train loss 3.4499   train acc 0.2539   worst 0.2505   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.26
+Epoch 81:  train loss 3.4451   train acc 0.2540   worst 0.2501   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.31
+Epoch 82:  train loss 3.4475   train acc 0.2550   worst 0.2511   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.26
+Epoch 83:  train loss 3.4386   train acc 0.2554   worst 0.2513   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.16
+Epoch 84:  train loss 3.4349   train acc 0.2561   worst 0.2519   lr 0.0197   p 8.00   eps 0.0001   mix 1.0000   time 30.22
+Epoch 85:  train loss 3.4345   train acc 0.2574   worst 0.2529   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.35
+Epoch 86:  train loss 3.4305   train acc 0.2581   worst 0.2538   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.28
+Epoch 87:  train loss 3.4205   train acc 0.2593   worst 0.2544   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.33
+Epoch 88:  train loss 3.4206   train acc 0.2592   worst 0.2541   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.25
+Epoch 89:  train loss 3.4155   train acc 0.2599   worst 0.2547   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.23
+Epoch 90:  train loss 3.4106   train acc 0.2616   worst 0.2558   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.37
+Epoch 91:  train loss 3.4097   train acc 0.2599   worst 0.2539   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.21
+Epoch 92:  train loss 3.4085   train acc 0.2636   worst 0.2572   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.27
+Epoch 93:  train loss 3.4060   train acc 0.2647   worst 0.2585   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.38
+Epoch 94:  train loss 3.4028   train acc 0.2632   worst 0.2562   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.27
+Epoch 95:  train loss 3.4011   train acc 0.2635   worst 0.2567   lr 0.0196   p 8.00   eps 0.0001   mix 1.0000   time 30.37
+Epoch 96:  train loss 3.3921   train acc 0.2658   worst 0.2585   lr 0.0195   p 8.00   eps 0.0001   mix 1.0000   time 30.39
+Epoch 97:  train loss 3.3921   train acc 0.2657   worst 0.2581   lr 0.0195   p 8.00   eps 0.0001   mix 1.0000   time 30.33
+Epoch 98:  train loss 3.3885   train acc 0.2676   worst 0.2595   lr 0.0195   p 8.00   eps 0.0002   mix 1.0000   time 30.23
+Epoch 99:  train loss 3.3878   train acc 0.2669   worst 0.2581   lr 0.0195   p 8.00   eps 0.0002   mix 1.0000   time 30.27
+Epoch 100:  train loss 3.3707   train acc 0.2691   worst 0.2607   lr 0.0195   p 8.00   eps 0.0002   mix 1.0000   time 42.75
+Epoch 101:  train loss 3.3531   train acc 0.2689   worst 0.2598   lr 0.0195   p 8.04   eps 0.0002   mix 0.9948   time 42.80
+Epoch 102:  train loss 3.3350   train acc 0.2676   worst 0.2575   lr 0.0195   p 8.09   eps 0.0002   mix 0.9896   time 42.62
+Epoch 103:  train loss 3.3166   train acc 0.2685   worst 0.2583   lr 0.0195   p 8.13   eps 0.0002   mix 0.9844   time 42.41
+Epoch 104:  train loss 3.2961   train acc 0.2700   worst 0.2589   lr 0.0195   p 8.18   eps 0.0002   mix 0.9793   time 42.69
+Epoch 105:  train loss 3.2766   train acc 0.2727   worst 0.2610   lr 0.0195   p 8.22   eps 0.0002   mix 0.9742   time 42.71
+Epoch 106:  train loss 3.2554   train acc 0.2698   worst 0.2589   lr 0.0195   p 8.27   eps 0.0002   mix 0.9691   time 42.60
+Epoch 107:  train loss 3.2372   train acc 0.2725   worst 0.2605   lr 0.0194   p 8.31   eps 0.0002   mix 0.9640   time 42.79
+Epoch 108:  train loss 3.2171   train acc 0.2732   worst 0.2602   lr 0.0194   p 8.36   eps 0.0002   mix 0.9590   time 42.76
+Epoch 109:  train loss 3.2010   train acc 0.2735   worst 0.2601   lr 0.0194   p 8.40   eps 0.0002   mix 0.9540   time 42.65
+Epoch 110:  train loss 3.1858   train acc 0.2740   worst 0.2600   lr 0.0194   p 8.45   eps 0.0002   mix 0.9490   time 42.60
+Epoch 111:  train loss 3.1700   train acc 0.2737   worst 0.2594   lr 0.0194   p 8.50   eps 0.0003   mix 0.9441   time 42.70
+Epoch 112:  train loss 3.1528   train acc 0.2735   worst 0.2579   lr 0.0194   p 8.54   eps 0.0003   mix 0.9391   time 42.58
+Epoch 113:  train loss 3.1303   train acc 0.2748   worst 0.2589   lr 0.0194   p 8.59   eps 0.0003   mix 0.9342   time 42.64
+Epoch 114:  train loss 3.1136   train acc 0.2768   worst 0.2605   lr 0.0194   p 8.64   eps 0.0003   mix 0.9294   time 42.54
+Epoch 115:  train loss 3.0961   train acc 0.2777   worst 0.2602   lr 0.0194   p 8.69   eps 0.0003   mix 0.9245   time 42.58
+Epoch 116:  train loss 3.0785   train acc 0.2762   worst 0.2590   lr 0.0193   p 8.73   eps 0.0003   mix 0.9197   time 42.39
+Epoch 117:  train loss 3.0640   train acc 0.2782   worst 0.2596   lr 0.0193   p 8.78   eps 0.0003   mix 0.9149   time 42.71
+Epoch 118:  train loss 3.0408   train acc 0.2769   worst 0.2574   lr 0.0193   p 8.83   eps 0.0003   mix 0.9101   time 42.72
+Epoch 119:  train loss 3.0244   train acc 0.2788   worst 0.2586   lr 0.0193   p 8.88   eps 0.0003   mix 0.9054   time 42.68
+Epoch 120:  train loss 3.0078   train acc 0.2798   worst 0.2592   lr 0.0193   p 8.93   eps 0.0004   mix 0.9006   time 42.59
+Epoch 121:  train loss 2.9906   train acc 0.2790   worst 0.2579   lr 0.0193   p 8.98   eps 0.0004   mix 0.8959   time 42.63
+Epoch 122:  train loss 2.9755   train acc 0.2804   worst 0.2576   lr 0.0193   p 9.03   eps 0.0004   mix 0.8913   time 42.73
+Epoch 123:  train loss 2.9558   train acc 0.2819   worst 0.2589   lr 0.0193   p 9.08   eps 0.0004   mix 0.8866   time 42.68
+Epoch 124:  train loss 2.9423   train acc 0.2824   worst 0.2580   lr 0.0193   p 9.13   eps 0.0004   mix 0.8820   time 42.54
+Epoch 125:  train loss 2.9234   train acc 0.2840   worst 0.2591   lr 0.0192   p 9.18   eps 0.0004   mix 0.8774   time 42.43
+Epoch 126:  train loss 2.9096   train acc 0.2841   worst 0.2582   lr 0.0192   p 9.23   eps 0.0004   mix 0.8728   time 42.72
+Epoch 127:  train loss 2.8909   train acc 0.2841   worst 0.2574   lr 0.0192   p 9.28   eps 0.0004   mix 0.8682   time 42.70
+Epoch 128:  train loss 2.8760   train acc 0.2842   worst 0.2568   lr 0.0192   p 9.33   eps 0.0005   mix 0.8637   time 42.56
+Epoch 129:  train loss 2.8561   train acc 0.2869   worst 0.2586   lr 0.0192   p 9.38   eps 0.0005   mix 0.8592   time 42.74
+Epoch 130:  train loss 2.8414   train acc 0.2851   worst 0.2562   lr 0.0192   p 9.43   eps 0.0005   mix 0.8547   time 42.80
+Epoch 131:  train loss 2.8306   train acc 0.2861   worst 0.2549   lr 0.0192   p 9.48   eps 0.0005   mix 0.8502   time 42.69
+Epoch 132:  train loss 2.8129   train acc 0.2874   worst 0.2555   lr 0.0192   p 9.54   eps 0.0005   mix 0.8458   time 42.80
+Epoch 133:  train loss 2.8001   train acc 0.2862   worst 0.2536   lr 0.0191   p 9.59   eps 0.0005   mix 0.8414   time 42.68
+Epoch 134:  train loss 2.7828   train acc 0.2861   worst 0.2516   lr 0.0191   p 9.64   eps 0.0005   mix 0.8370   time 42.82
+Epoch 135:  train loss 2.7757   train acc 0.2901   worst 0.2549   lr 0.0191   p 9.69   eps 0.0006   mix 0.8326   time 42.77
+Epoch 136:  train loss 2.7560   train acc 0.2887   worst 0.2517   lr 0.0191   p 9.75   eps 0.0006   mix 0.8283   time 42.83
+Epoch 137:  train loss 2.7415   train acc 0.2898   worst 0.2532   lr 0.0191   p 9.80   eps 0.0006   mix 0.8240   time 42.66
+Epoch 138:  train loss 2.7248   train acc 0.2888   worst 0.2502   lr 0.0191   p 9.85   eps 0.0006   mix 0.8197   time 42.76
+Epoch 139:  train loss 2.7099   train acc 0.2908   worst 0.2511   lr 0.0191   p 9.91   eps 0.0006   mix 0.8154   time 42.78
+Epoch 140:  train loss 2.6962   train acc 0.2921   worst 0.2517   lr 0.0190   p 9.96   eps 0.0006   mix 0.8111   time 44.25
+Epoch 141:  train loss 2.6845   train acc 0.2914   worst 0.2491   lr 0.0190   p 10.02   eps 0.0007   mix 0.8069   time 47.18
+Epoch 142:  train loss 2.6711   train acc 0.2917   worst 0.2492   lr 0.0190   p 10.07   eps 0.0007   mix 0.8027   time 47.32
+Epoch 143:  train loss 2.6556   train acc 0.2925   worst 0.2473   lr 0.0190   p 10.13   eps 0.0007   mix 0.7985   time 47.14
+Epoch 144:  train loss 2.6367   train acc 0.2929   worst 0.2480   lr 0.0190   p 10.18   eps 0.0007   mix 0.7943   time 47.12
+Epoch 145:  train loss 2.6271   train acc 0.2932   worst 0.2467   lr 0.0190   p 10.24   eps 0.0007   mix 0.7902   time 47.23
+Epoch 146:  train loss 2.6128   train acc 0.2938   worst 0.2461   lr 0.0190   p 10.30   eps 0.0008   mix 0.7861   time 47.21
+Epoch 147:  train loss 2.6002   train acc 0.2925   worst 0.2437   lr 0.0190   p 10.35   eps 0.0008   mix 0.7820   time 47.20
+Epoch 148:  train loss 2.5897   train acc 0.2949   worst 0.2452   lr 0.0189   p 10.41   eps 0.0008   mix 0.7779   time 47.22
+Epoch 149:  train loss 2.5731   train acc 0.2953   worst 0.2444   lr 0.0189   p 10.47   eps 0.0008   mix 0.7738   time 47.25
+Epoch 150:  train loss 2.5607   train acc 0.2983   worst 0.2445   lr 0.0189   p 10.53   eps 0.0009   mix 0.7698   time 47.30
+Epoch 151:  train loss 2.5485   train acc 0.2965   worst 0.2429   lr 0.0189   p 10.58   eps 0.0009   mix 0.7658   time 47.27
+Epoch 152:  train loss 2.5344   train acc 0.2969   worst 0.2415   lr 0.0189   p 10.64   eps 0.0009   mix 0.7618   time 47.06
+Epoch 153:  train loss 2.5286   train acc 0.2952   worst 0.2389   lr 0.0189   p 10.70   eps 0.0009   mix 0.7578   time 47.17
+Epoch 154:  train loss 2.5119   train acc 0.2980   worst 0.2399   lr 0.0189   p 10.76   eps 0.0010   mix 0.7538   time 47.26
+Epoch 155:  train loss 2.4981   train acc 0.2982   worst 0.2374   lr 0.0188   p 10.82   eps 0.0010   mix 0.7499   time 47.28
+Epoch 156:  train loss 2.4895   train acc 0.2982   worst 0.2368   lr 0.0188   p 10.88   eps 0.0010   mix 0.7460   time 47.20
+Epoch 157:  train loss 2.4741   train acc 0.2998   worst 0.2376   lr 0.0188   p 10.94   eps 0.0010   mix 0.7421   time 47.31
+Epoch 158:  train loss 2.4624   train acc 0.3009   worst 0.2363   lr 0.0188   p 11.00   eps 0.0011   mix 0.7382   time 47.11
+Epoch 159:  train loss 2.4481   train acc 0.2976   worst 0.2345   lr 0.0188   p 11.06   eps 0.0011   mix 0.7344   time 47.24
+Epoch 160:  train loss 2.4381   train acc 0.3008   worst 0.2335   lr 0.0188   p 11.12   eps 0.0011   mix 0.7305   time 47.26
+Epoch 161:  train loss 2.4275   train acc 0.2988   worst 0.2327   lr 0.0187   p 11.18   eps 0.0011   mix 0.7267   time 47.30
+Epoch 162:  train loss 2.4142   train acc 0.3008   worst 0.2310   lr 0.0187   p 11.24   eps 0.0012   mix 0.7229   time 47.19
+Epoch 163:  train loss 2.4032   train acc 0.2996   worst 0.2291   lr 0.0187   p 11.30   eps 0.0012   mix 0.7191   time 47.17
+Epoch 164:  train loss 2.3964   train acc 0.3008   worst 0.2294   lr 0.0187   p 11.37   eps 0.0012   mix 0.7154   time 47.14
+Epoch 165:  train loss 2.3810   train acc 0.3012   worst 0.2281   lr 0.0187   p 11.43   eps 0.0013   mix 0.7117   time 47.32
+Epoch 166:  train loss 2.3690   train acc 0.3009   worst 0.2257   lr 0.0187   p 11.49   eps 0.0013   mix 0.7079   time 47.25
+Epoch 167:  train loss 2.3557   train acc 0.3022   worst 0.2253   lr 0.0187   p 11.55   eps 0.0013   mix 0.7043   time 47.23
+Epoch 168:  train loss 2.3482   train acc 0.3012   worst 0.2244   lr 0.0186   p 11.62   eps 0.0013   mix 0.7006   time 47.18
+Epoch 169:  train loss 2.3380   train acc 0.3034   worst 0.2236   lr 0.0186   p 11.68   eps 0.0014   mix 0.6969   time 47.30
+Epoch 170:  train loss 2.3276   train acc 0.3043   worst 0.2215   lr 0.0186   p 11.75   eps 0.0014   mix 0.6933   time 47.25
+Epoch 171:  train loss 2.3132   train acc 0.3028   worst 0.2207   lr 0.0186   p 11.81   eps 0.0014   mix 0.6897   time 47.33
+Epoch 172:  train loss 2.3046   train acc 0.3018   worst 0.2187   lr 0.0186   p 11.88   eps 0.0015   mix 0.6861   time 47.40
+Epoch 173:  train loss 2.2955   train acc 0.3041   worst 0.2187   lr 0.0186   p 11.94   eps 0.0015   mix 0.6825   time 47.30
+Epoch 174:  train loss 2.2839   train acc 0.3042   worst 0.2183   lr 0.0185   p 12.01   eps 0.0015   mix 0.6789   time 47.33
+Epoch 175:  train loss 2.2745   train acc 0.3047   worst 0.2159   lr 0.0185   p 12.07   eps 0.0016   mix 0.6754   time 47.41
+Epoch 176:  train loss 2.2656   train acc 0.3056   worst 0.2148   lr 0.0185   p 12.14   eps 0.0016   mix 0.6719   time 47.36
+Epoch 177:  train loss 2.2540   train acc 0.3049   worst 0.2126   lr 0.0185   p 12.21   eps 0.0017   mix 0.6683   time 47.43
+Epoch 178:  train loss 2.2441   train acc 0.3043   worst 0.2128   lr 0.0185   p 12.27   eps 0.0017   mix 0.6649   time 47.33
+Epoch 179:  train loss 2.2364   train acc 0.3054   worst 0.2100   lr 0.0185   p 12.34   eps 0.0017   mix 0.6614   time 47.32
+Epoch 180:  train loss 2.2255   train acc 0.3063   worst 0.2091   lr 0.0184   p 12.41   eps 0.0018   mix 0.6579   time 47.35
+Epoch 181:  train loss 2.2136   train acc 0.3061   worst 0.2090   lr 0.0184   p 12.48   eps 0.0018   mix 0.6545   time 47.29
+Epoch 182:  train loss 2.2075   train acc 0.3079   worst 0.2071   lr 0.0184   p 12.55   eps 0.0019   mix 0.6511   time 47.37
+Epoch 183:  train loss 2.1982   train acc 0.3070   worst 0.2062   lr 0.0184   p 12.61   eps 0.0019   mix 0.6477   time 47.32
+Epoch 184:  train loss 2.1890   train acc 0.3079   worst 0.2059   lr 0.0184   p 12.68   eps 0.0019   mix 0.6443   time 47.40
+Epoch 185:  train loss 2.1794   train acc 0.3055   worst 0.2019   lr 0.0184   p 12.75   eps 0.0020   mix 0.6409   time 47.42
+Epoch 186:  train loss 2.1702   train acc 0.3062   worst 0.2025   lr 0.0183   p 12.82   eps 0.0020   mix 0.6376   time 47.31
+Epoch 187:  train loss 2.1604   train acc 0.3057   worst 0.1996   lr 0.0183   p 12.89   eps 0.0021   mix 0.6343   time 47.48
+Epoch 188:  train loss 2.1520   train acc 0.3080   worst 0.1989   lr 0.0183   p 12.97   eps 0.0021   mix 0.6310   time 47.26
+Epoch 189:  train loss 2.1388   train acc 0.3062   worst 0.1987   lr 0.0183   p 13.04   eps 0.0022   mix 0.6277   time 47.31
+Epoch 190:  train loss 2.1334   train acc 0.3067   worst 0.1956   lr 0.0183   p 13.11   eps 0.0022   mix 0.6244   time 47.36
+Epoch 191:  train loss 2.1262   train acc 0.3061   worst 0.1941   lr 0.0183   p 13.18   eps 0.0023   mix 0.6211   time 47.36
+Epoch 192:  train loss 2.1177   train acc 0.3061   worst 0.1927   lr 0.0182   p 13.25   eps 0.0023   mix 0.6179   time 47.34
+Epoch 193:  train loss 2.1095   train acc 0.3080   worst 0.1931   lr 0.0182   p 13.33   eps 0.0023   mix 0.6147   time 47.34
+Epoch 194:  train loss 2.0995   train acc 0.3076   worst 0.1914   lr 0.0182   p 13.40   eps 0.0024   mix 0.6115   time 47.31
+Epoch 195:  train loss 2.0894   train acc 0.3089   worst 0.1914   lr 0.0182   p 13.47   eps 0.0024   mix 0.6083   time 47.36
+Epoch 196:  train loss 2.0815   train acc 0.3077   worst 0.1879   lr 0.0182   p 13.55   eps 0.0025   mix 0.6051   time 47.45
+Epoch 197:  train loss 2.0733   train acc 0.3071   worst 0.1875   lr 0.0181   p 13.62   eps 0.0025   mix 0.6019   time 47.41
+Epoch 198:  train loss 2.0661   train acc 0.3078   worst 0.1853   lr 0.0181   p 13.70   eps 0.0026   mix 0.5988   time 47.46
+Epoch 199:  train loss 2.0614   train acc 0.3086   worst 0.1831   lr 0.0181   p 13.77   eps 0.0027   mix 0.5957   time 47.38
+Epoch 200:  train loss 2.0475   train acc 0.3057   worst 0.1829   lr 0.0181   p 13.85   eps 0.0027   mix 0.5926   time 47.41
+Epoch 201:  train loss 2.0432   train acc 0.3062   worst 0.1807   lr 0.0181   p 13.92   eps 0.0028   mix 0.5895   time 47.53
+Epoch 202:  train loss 2.0336   train acc 0.3084   worst 0.1803   lr 0.0181   p 14.00   eps 0.0028   mix 0.5864   time 47.46
+Epoch 203:  train loss 2.0265   train acc 0.3071   worst 0.1798   lr 0.0180   p 14.08   eps 0.0029   mix 0.5833   time 47.40
+Epoch 204:  train loss 2.0168   train acc 0.3096   worst 0.1791   lr 0.0180   p 14.15   eps 0.0029   mix 0.5803   time 47.40
+Epoch 205:  train loss 2.0125   train acc 0.3090   worst 0.1774   lr 0.0180   p 14.23   eps 0.0030   mix 0.5772   time 47.40
+Epoch 206:  train loss 2.0043   train acc 0.3097   worst 0.1766   lr 0.0180   p 14.31   eps 0.0030   mix 0.5742   time 47.42
+Epoch 207:  train loss 1.9950   train acc 0.3065   worst 0.1762   lr 0.0180   p 14.39   eps 0.0031   mix 0.5712   time 47.42
+Epoch 208:  train loss 1.9877   train acc 0.3063   worst 0.1737   lr 0.0179   p 14.47   eps 0.0031   mix 0.5683   time 47.51
+Epoch 209:  train loss 1.9810   train acc 0.3073   worst 0.1722   lr 0.0179   p 14.55   eps 0.0032   mix 0.5653   time 47.42
+Epoch 210:  train loss 1.9729   train acc 0.3077   worst 0.1717   lr 0.0179   p 14.63   eps 0.0032   mix 0.5623   time 47.43
+Epoch 211:  train loss 1.9654   train acc 0.3066   worst 0.1698   lr 0.0179   p 14.71   eps 0.0033   mix 0.5594   time 47.53
+Epoch 212:  train loss 1.9589   train acc 0.3094   worst 0.1703   lr 0.0179   p 14.79   eps 0.0034   mix 0.5565   time 47.29
+Epoch 213:  train loss 1.9490   train acc 0.3068   worst 0.1672   lr 0.0178   p 14.87   eps 0.0034   mix 0.5536   time 47.41
+Epoch 214:  train loss 1.9430   train acc 0.3069   worst 0.1666   lr 0.0178   p 14.95   eps 0.0035   mix 0.5507   time 47.37
+Epoch 215:  train loss 1.9344   train acc 0.3081   worst 0.1662   lr 0.0178   p 15.04   eps 0.0035   mix 0.5478   time 47.50
+Epoch 216:  train loss 1.9266   train acc 0.3074   worst 0.1653   lr 0.0178   p 15.12   eps 0.0036   mix 0.5450   time 47.52
+Epoch 217:  train loss 1.9202   train acc 0.3096   worst 0.1655   lr 0.0178   p 15.20   eps 0.0036   mix 0.5421   time 47.32
+Epoch 218:  train loss 1.9107   train acc 0.3080   worst 0.1649   lr 0.0177   p 15.29   eps 0.0037   mix 0.5393   time 47.39
+Epoch 219:  train loss 1.9056   train acc 0.3064   worst 0.1628   lr 0.0177   p 15.37   eps 0.0037   mix 0.5365   time 47.52
+Epoch 220:  train loss 1.8989   train acc 0.3078   worst 0.1631   lr 0.0177   p 15.45   eps 0.0038   mix 0.5337   time 47.52
+Epoch 221:  train loss 1.8889   train acc 0.3074   worst 0.1627   lr 0.0177   p 15.54   eps 0.0038   mix 0.5309   time 47.39
+Epoch 222:  train loss 1.8838   train acc 0.3063   worst 0.1615   lr 0.0177   p 15.62   eps 0.0039   mix 0.5281   time 47.42
+Epoch 223:  train loss 1.8749   train acc 0.3045   worst 0.1596   lr 0.0176   p 15.71   eps 0.0039   mix 0.5254   time 47.41
+Epoch 224:  train loss 1.8694   train acc 0.3059   worst 0.1594   lr 0.0176   p 15.80   eps 0.0040   mix 0.5226   time 47.38
+Epoch 225:  train loss 1.8614   train acc 0.3051   worst 0.1589   lr 0.0176   p 15.88   eps 0.0041   mix 0.5199   time 47.53
+Epoch 226:  train loss 1.8535   train acc 0.3065   worst 0.1604   lr 0.0176   p 15.97   eps 0.0041   mix 0.5172   time 47.37
+Epoch 227:  train loss 1.8454   train acc 0.3036   worst 0.1576   lr 0.0176   p 16.06   eps 0.0042   mix 0.5145   time 47.50
+Epoch 228:  train loss 1.8403   train acc 0.3056   worst 0.1567   lr 0.0175   p 16.15   eps 0.0042   mix 0.5118   time 47.48
+Epoch 229:  train loss 1.8335   train acc 0.3069   worst 0.1569   lr 0.0175   p 16.24   eps 0.0043   mix 0.5091   time 47.42
+Epoch 230:  train loss 1.8261   train acc 0.3079   worst 0.1562   lr 0.0175   p 16.33   eps 0.0043   mix 0.5065   time 47.52
+Epoch 231:  train loss 1.8183   train acc 0.3063   worst 0.1560   lr 0.0175   p 16.42   eps 0.0044   mix 0.5038   time 47.47
+Epoch 232:  train loss 1.8144   train acc 0.3065   worst 0.1547   lr 0.0175   p 16.51   eps 0.0044   mix 0.5012   time 47.44
+Epoch 233:  train loss 1.8014   train acc 0.3058   worst 0.1547   lr 0.0174   p 16.60   eps 0.0045   mix 0.4986   time 47.43
+Epoch 234:  train loss 1.7974   train acc 0.3050   worst 0.1539   lr 0.0174   p 16.69   eps 0.0045   mix 0.4960   time 47.48
+Epoch 235:  train loss 1.7916   train acc 0.3055   worst 0.1536   lr 0.0174   p 16.78   eps 0.0046   mix 0.4934   time 47.55
+Epoch 236:  train loss 1.7859   train acc 0.3041   worst 0.1524   lr 0.0174   p 16.87   eps 0.0047   mix 0.4908   time 47.45
+Epoch 237:  train loss 1.7766   train acc 0.3039   worst 0.1527   lr 0.0174   p 16.96   eps 0.0047   mix 0.4882   time 47.50
+Epoch 238:  train loss 1.7738   train acc 0.3043   worst 0.1502   lr 0.0173   p 17.06   eps 0.0048   mix 0.4857   time 47.40
+Epoch 239:  train loss 1.7652   train acc 0.3054   worst 0.1494   lr 0.0173   p 17.15   eps 0.0048   mix 0.4832   time 47.48
+Epoch 240:  train loss 1.7549   train acc 0.3033   worst 0.1492   lr 0.0173   p 17.25   eps 0.0049   mix 0.4806   time 47.51
+Epoch 241:  train loss 1.7500   train acc 0.3045   worst 0.1496   lr 0.0173   p 17.34   eps 0.0049   mix 0.4781   time 47.57
+Epoch 242:  train loss 1.7440   train acc 0.3044   worst 0.1491   lr 0.0172   p 17.44   eps 0.0050   mix 0.4756   time 47.52
+Epoch 243:  train loss 1.7381   train acc 0.3051   worst 0.1494   lr 0.0172   p 17.53   eps 0.0050   mix 0.4732   time 47.58
+Epoch 244:  train loss 1.7321   train acc 0.3030   worst 0.1472   lr 0.0172   p 17.63   eps 0.0051   mix 0.4707   time 47.48
+Epoch 245:  train loss 1.7248   train acc 0.3038   worst 0.1481   lr 0.0172   p 17.73   eps 0.0051   mix 0.4682   time 47.55
+Epoch 246:  train loss 1.7181   train acc 0.3027   worst 0.1470   lr 0.0172   p 17.82   eps 0.0052   mix 0.4658   time 47.55
+Epoch 247:  train loss 1.7082   train acc 0.3033   worst 0.1479   lr 0.0171   p 17.92   eps 0.0052   mix 0.4633   time 47.49
+Epoch 248:  train loss 1.7040   train acc 0.3030   worst 0.1456   lr 0.0171   p 18.02   eps 0.0053   mix 0.4609   time 47.46
+Epoch 249:  train loss 1.6959   train acc 0.3019   worst 0.1442   lr 0.0171   p 18.12   eps 0.0054   mix 0.4585   time 47.58
+Epoch 250:  train loss 1.6894   train acc 0.3013   worst 0.1454   lr 0.0171   p 18.22   eps 0.0054   mix 0.4561   time 47.43
+Epoch 251:  train loss 1.6865   train acc 0.3032   worst 0.1444   lr 0.0170   p 18.32   eps 0.0055   mix 0.4538   time 47.49
+Epoch 252:  train loss 1.6770   train acc 0.2999   worst 0.1451   lr 0.0170   p 18.42   eps 0.0055   mix 0.4514   time 47.49
+Epoch 253:  train loss 1.6703   train acc 0.3015   worst 0.1449   lr 0.0170   p 18.52   eps 0.0056   mix 0.4490   time 47.44
+Epoch 254:  train loss 1.6644   train acc 0.3003   worst 0.1454   lr 0.0170   p 18.62   eps 0.0056   mix 0.4467   time 47.54
+Epoch 255:  train loss 1.6592   train acc 0.3010   worst 0.1425   lr 0.0170   p 18.73   eps 0.0057   mix 0.4444   time 47.47
+Epoch 256:  train loss 1.6502   train acc 0.3015   worst 0.1425   lr 0.0169   p 18.83   eps 0.0057   mix 0.4420   time 47.56
+Epoch 257:  train loss 1.6441   train acc 0.2992   worst 0.1429   lr 0.0169   p 18.93   eps 0.0058   mix 0.4397   time 47.52
+Epoch 258:  train loss 1.6423   train acc 0.3015   worst 0.1417   lr 0.0169   p 19.04   eps 0.0058   mix 0.4374   time 47.60
+Epoch 259:  train loss 1.6332   train acc 0.3013   worst 0.1432   lr 0.0169   p 19.14   eps 0.0059   mix 0.4351   time 47.65
+Epoch 260:  train loss 1.6266   train acc 0.2995   worst 0.1419   lr 0.0168   p 19.25   eps 0.0060   mix 0.4329   time 47.70
+Epoch 261:  train loss 1.6203   train acc 0.3001   worst 0.1421   lr 0.0168   p 19.35   eps 0.0060   mix 0.4306   time 47.62
+Epoch 262:  train loss 1.6144   train acc 0.2994   worst 0.1411   lr 0.0168   p 19.46   eps 0.0061   mix 0.4284   time 47.56
+Epoch 263:  train loss 1.6111   train acc 0.2989   worst 0.1403   lr 0.0168   p 19.57   eps 0.0061   mix 0.4261   time 47.54
+Epoch 264:  train loss 1.5988   train acc 0.2980   worst 0.1414   lr 0.0168   p 19.67   eps 0.0062   mix 0.4239   time 47.68
+Epoch 265:  train loss 1.5985   train acc 0.3003   worst 0.1412   lr 0.0167   p 19.78   eps 0.0062   mix 0.4217   time 47.81
+Epoch 266:  train loss 1.5890   train acc 0.2993   worst 0.1398   lr 0.0167   p 19.89   eps 0.0063   mix 0.4195   time 47.65
+Epoch 267:  train loss 1.5827   train acc 0.2991   worst 0.1403   lr 0.0167   p 20.00   eps 0.0063   mix 0.4173   time 47.56
+Epoch 268:  train loss 1.5789   train acc 0.2980   worst 0.1391   lr 0.0167   p 20.11   eps 0.0064   mix 0.4151   time 47.59
+Epoch 269:  train loss 1.5716   train acc 0.2967   worst 0.1392   lr 0.0166   p 20.22   eps 0.0064   mix 0.4130   time 47.62
+Epoch 270:  train loss 1.5639   train acc 0.2971   worst 0.1391   lr 0.0166   p 20.33   eps 0.0065   mix 0.4108   time 47.57
+Epoch 271:  train loss 1.5570   train acc 0.2974   worst 0.1403   lr 0.0166   p 20.44   eps 0.0065   mix 0.4087   time 47.78
+Epoch 272:  train loss 1.5528   train acc 0.2991   worst 0.1397   lr 0.0166   p 20.56   eps 0.0066   mix 0.4065   time 47.67
+Epoch 273:  train loss 1.5453   train acc 0.2960   worst 0.1388   lr 0.0165   p 20.67   eps 0.0067   mix 0.4044   time 47.61
+Epoch 274:  train loss 1.5406   train acc 0.2971   worst 0.1390   lr 0.0165   p 20.78   eps 0.0067   mix 0.4023   time 47.64
+Epoch 275:  train loss 1.5334   train acc 0.2969   worst 0.1390   lr 0.0165   p 20.90   eps 0.0068   mix 0.4002   time 47.67
+Epoch 276:  train loss 1.5303   train acc 0.2968   worst 0.1374   lr 0.0165   p 21.01   eps 0.0068   mix 0.3981   time 47.87
+Epoch 277:  train loss 1.5205   train acc 0.2949   worst 0.1382   lr 0.0164   p 21.13   eps 0.0069   mix 0.3960   time 47.52
+Epoch 278:  train loss 1.5154   train acc 0.2944   worst 0.1383   lr 0.0164   p 21.24   eps 0.0069   mix 0.3940   time 47.75
+Epoch 279:  train loss 1.5107   train acc 0.2947   worst 0.1373   lr 0.0164   p 21.36   eps 0.0070   mix 0.3919   time 47.65
+Epoch 280:  train loss 1.5042   train acc 0.2957   worst 0.1385   lr 0.0164   p 21.48   eps 0.0070   mix 0.3899   time 47.71
+Epoch 281:  train loss 1.4980   train acc 0.2951   worst 0.1374   lr 0.0164   p 21.60   eps 0.0071   mix 0.3878   time 47.62
+Epoch 282:  train loss 1.4924   train acc 0.2951   worst 0.1379   lr 0.0163   p 21.72   eps 0.0071   mix 0.3858   time 47.76
+Epoch 283:  train loss 1.4872   train acc 0.2945   worst 0.1368   lr 0.0163   p 21.83   eps 0.0072   mix 0.3838   time 47.59
+Epoch 284:  train loss 1.4795   train acc 0.2946   worst 0.1372   lr 0.0163   p 21.96   eps 0.0073   mix 0.3818   time 47.72
+Epoch 285:  train loss 1.4762   train acc 0.2949   worst 0.1379   lr 0.0163   p 22.08   eps 0.0073   mix 0.3798   time 47.55
+Epoch 286:  train loss 1.4695   train acc 0.2931   worst 0.1367   lr 0.0162   p 22.20   eps 0.0074   mix 0.3778   time 47.67
+Epoch 287:  train loss 1.4645   train acc 0.2934   worst 0.1360   lr 0.0162   p 22.32   eps 0.0074   mix 0.3758   time 47.71
+Epoch 288:  train loss 1.4571   train acc 0.2931   worst 0.1365   lr 0.0162   p 22.44   eps 0.0075   mix 0.3739   time 47.65
+Epoch 289:  train loss 1.4526   train acc 0.2933   worst 0.1368   lr 0.0162   p 22.57   eps 0.0075   mix 0.3719   time 47.54
+Epoch 290:  train loss 1.4452   train acc 0.2925   worst 0.1365   lr 0.0161   p 22.69   eps 0.0076   mix 0.3700   time 47.60
+Epoch 291:  train loss 1.4408   train acc 0.2925   worst 0.1359   lr 0.0161   p 22.81   eps 0.0076   mix 0.3681   time 47.73
+Epoch 292:  train loss 1.4336   train acc 0.2921   worst 0.1368   lr 0.0161   p 22.94   eps 0.0077   mix 0.3661   time 47.66
+Epoch 293:  train loss 1.4274   train acc 0.2919   worst 0.1355   lr 0.0161   p 23.07   eps 0.0077   mix 0.3642   time 47.54
+Epoch 294:  train loss 1.4245   train acc 0.2916   worst 0.1361   lr 0.0160   p 23.19   eps 0.0078   mix 0.3623   time 47.56
+Epoch 295:  train loss 1.4162   train acc 0.2912   worst 0.1356   lr 0.0160   p 23.32   eps 0.0078   mix 0.3604   time 47.74
+Epoch 296:  train loss 1.4150   train acc 0.2917   worst 0.1357   lr 0.0160   p 23.45   eps 0.0079   mix 0.3585   time 47.61
+Epoch 297:  train loss 1.4087   train acc 0.2913   worst 0.1357   lr 0.0160   p 23.58   eps 0.0080   mix 0.3567   time 47.56
+Epoch 298:  train loss 1.4004   train acc 0.2907   worst 0.1357   lr 0.0159   p 23.71   eps 0.0080   mix 0.3548   time 47.62
+Epoch 299:  train loss 1.3941   train acc 0.2889   worst 0.1355   lr 0.0159   p 23.84   eps 0.0081   mix 0.3530   time 47.72
+Epoch 300:  train loss 1.3917   train acc 0.2897   worst 0.1338   lr 0.0159   p 23.97   eps 0.0081   mix 0.3511   time 47.67
+Epoch 301:  train loss 1.3816   train acc 0.2889   worst 0.1362   lr 0.0159   p 24.10   eps 0.0082   mix 0.3493   time 47.67
+Epoch 302:  train loss 1.3823   train acc 0.2892   worst 0.1330   lr 0.0158   p 24.23   eps 0.0082   mix 0.3475   time 47.80
+Epoch 303:  train loss 1.3744   train acc 0.2897   worst 0.1365   lr 0.0158   p 24.37   eps 0.0083   mix 0.3456   time 47.72
+Epoch 304:  train loss 1.3670   train acc 0.2885   worst 0.1355   lr 0.0158   p 24.50   eps 0.0083   mix 0.3438   time 47.57
+Epoch 305:  train loss 1.3628   train acc 0.2886   worst 0.1356   lr 0.0158   p 24.64   eps 0.0084   mix 0.3421   time 47.75
+Epoch 306:  train loss 1.3570   train acc 0.2878   worst 0.1350   lr 0.0157   p 24.77   eps 0.0084   mix 0.3403   time 47.64
+Epoch 307:  train loss 1.3503   train acc 0.2871   worst 0.1357   lr 0.0157   p 24.91   eps 0.0085   mix 0.3385   time 47.62
+Epoch 308:  train loss 1.3456   train acc 0.2884   worst 0.1358   lr 0.0157   p 25.05   eps 0.0085   mix 0.3367   time 47.63
+Epoch 309:  train loss 1.3402   train acc 0.2878   worst 0.1355   lr 0.0156   p 25.18   eps 0.0086   mix 0.3350   time 47.74
+Epoch 310:  train loss 1.3364   train acc 0.2883   worst 0.1360   lr 0.0156   p 25.32   eps 0.0087   mix 0.3332   time 47.54
+Epoch 311:  train loss 1.3268   train acc 0.2855   worst 0.1362   lr 0.0156   p 25.46   eps 0.0087   mix 0.3315   time 47.58
+Epoch 312:  train loss 1.3261   train acc 0.2887   worst 0.1352   lr 0.0156   p 25.60   eps 0.0088   mix 0.3297   time 47.64
+Epoch 313:  train loss 1.3189   train acc 0.2861   worst 0.1352   lr 0.0155   p 25.74   eps 0.0088   mix 0.3280   time 47.58
+Epoch 314:  train loss 1.3114   train acc 0.2855   worst 0.1355   lr 0.0155   p 25.88   eps 0.0089   mix 0.3263   time 47.61
+Epoch 315:  train loss 1.3090   train acc 0.2871   worst 0.1360   lr 0.0155   p 26.03   eps 0.0089   mix 0.3246   time 47.51
+Epoch 316:  train loss 1.3027   train acc 0.2852   worst 0.1357   lr 0.0155   p 26.17   eps 0.0090   mix 0.3229   time 47.64
+Epoch 317:  train loss 1.2979   train acc 0.2848   worst 0.1358   lr 0.0154   p 26.31   eps 0.0090   mix 0.3212   time 47.70
+Epoch 318:  train loss 1.2927   train acc 0.2847   worst 0.1349   lr 0.0154   p 26.46   eps 0.0091   mix 0.3196   time 47.82
+Epoch 319:  train loss 1.2870   train acc 0.2863   worst 0.1361   lr 0.0154   p 26.60   eps 0.0091   mix 0.3179   time 47.81
+Epoch 320:  train loss 1.2801   train acc 0.2831   worst 0.1360   lr 0.0154   p 26.75   eps 0.0092   mix 0.3162   time 47.71
+Epoch 321:  train loss 1.2778   train acc 0.2836   worst 0.1354   lr 0.0153   p 26.90   eps 0.0093   mix 0.3146   time 47.81
+Epoch 322:  train loss 1.2700   train acc 0.2822   worst 0.1350   lr 0.0153   p 27.04   eps 0.0093   mix 0.3129   time 47.75
+Epoch 323:  train loss 1.2674   train acc 0.2847   worst 0.1348   lr 0.0153   p 27.19   eps 0.0094   mix 0.3113   time 47.70
+Epoch 324:  train loss 1.2600   train acc 0.2831   worst 0.1351   lr 0.0153   p 27.34   eps 0.0094   mix 0.3097   time 47.64
+Epoch 325:  train loss 1.2579   train acc 0.2824   worst 0.1348   lr 0.0152   p 27.49   eps 0.0095   mix 0.3081   time 47.72
+Epoch 326:  train loss 1.2495   train acc 0.2826   worst 0.1357   lr 0.0152   p 27.64   eps 0.0095   mix 0.3065   time 47.68
+Epoch 327:  train loss 1.2465   train acc 0.2818   worst 0.1361   lr 0.0152   p 27.80   eps 0.0096   mix 0.3049   time 47.81
+Epoch 328:  train loss 1.2435   train acc 0.2830   worst 0.1355   lr 0.0151   p 27.95   eps 0.0096   mix 0.3033   time 47.74
+Epoch 329:  train loss 1.2351   train acc 0.2812   worst 0.1364   lr 0.0151   p 28.10   eps 0.0097   mix 0.3017   time 47.73
+Epoch 330:  train loss 1.2312   train acc 0.2818   worst 0.1351   lr 0.0151   p 28.26   eps 0.0097   mix 0.3001   time 47.70
+Epoch 331:  train loss 1.2244   train acc 0.2808   worst 0.1357   lr 0.0151   p 28.41   eps 0.0098   mix 0.2985   time 47.84
+Epoch 332:  train loss 1.2208   train acc 0.2827   worst 0.1362   lr 0.0150   p 28.57   eps 0.0098   mix 0.2970   time 47.81
+Epoch 333:  train loss 1.2173   train acc 0.2809   worst 0.1355   lr 0.0150   p 28.73   eps 0.0099   mix 0.2954   time 47.93
+Epoch 334:  train loss 1.2099   train acc 0.2792   worst 0.1365   lr 0.0150   p 28.89   eps 0.0100   mix 0.2939   time 47.76
+Epoch 335:  train loss 1.2070   train acc 0.2799   worst 0.1352   lr 0.0150   p 29.04   eps 0.0100   mix 0.2924   time 47.77
+Epoch 336:  train loss 1.2008   train acc 0.2799   worst 0.1356   lr 0.0149   p 29.20   eps 0.0101   mix 0.2908   time 47.86
+Epoch 337:  train loss 1.1940   train acc 0.2782   worst 0.1367   lr 0.0149   p 29.36   eps 0.0101   mix 0.2893   time 47.73
+Epoch 338:  train loss 1.1916   train acc 0.2788   worst 0.1368   lr 0.0149   p 29.53   eps 0.0102   mix 0.2878   time 47.81
+Epoch 339:  train loss 1.1859   train acc 0.2783   worst 0.1363   lr 0.0148   p 29.69   eps 0.0102   mix 0.2863   time 47.82
+Epoch 340:  train loss 1.1799   train acc 0.2780   worst 0.1362   lr 0.0148   p 29.85   eps 0.0103   mix 0.2848   time 47.72
+Epoch 341:  train loss 1.1762   train acc 0.2780   worst 0.1360   lr 0.0148   p 30.02   eps 0.0103   mix 0.2833   time 47.87
+Epoch 342:  train loss 1.1708   train acc 0.2778   worst 0.1360   lr 0.0148   p 30.18   eps 0.0104   mix 0.2818   time 47.82
+Epoch 343:  train loss 1.1652   train acc 0.2767   worst 0.1364   lr 0.0147   p 30.35   eps 0.0104   mix 0.2804   time 47.91
+Epoch 344:  train loss 1.1641   train acc 0.2789   worst 0.1357   lr 0.0147   p 30.51   eps 0.0105   mix 0.2789   time 47.78
+Epoch 345:  train loss 1.1590   train acc 0.2782   worst 0.1369   lr 0.0147   p 30.68   eps 0.0106   mix 0.2774   time 47.77
+Epoch 346:  train loss 1.1536   train acc 0.2770   worst 0.1364   lr 0.0147   p 30.85   eps 0.0106   mix 0.2760   time 47.69
+Epoch 347:  train loss 1.1500   train acc 0.2783   worst 0.1359   lr 0.0146   p 31.02   eps 0.0107   mix 0.2746   time 47.74
+Epoch 348:  train loss 1.1453   train acc 0.2763   worst 0.1367   lr 0.0146   p 31.19   eps 0.0107   mix 0.2731   time 47.70
+Epoch 349:  train loss 1.1380   train acc 0.2755   worst 0.1363   lr 0.0146   p 31.36   eps 0.0108   mix 0.2717   time 48.01
+Epoch 350:  train loss 1.1368   train acc 0.2781   worst 0.1367   lr 0.0145   p 31.54   eps 0.0108   mix 0.2703   time 47.78
+Epoch 351:  train loss 1.1307   train acc 0.2765   worst 0.1371   lr 0.0145   p 31.71   eps 0.0109   mix 0.2689   time 47.81
+Epoch 352:  train loss 1.1246   train acc 0.2762   worst 0.1377   lr 0.0145   p 31.88   eps 0.0109   mix 0.2675   time 47.90
+Epoch 353:  train loss 1.1190   train acc 0.2741   worst 0.1364   lr 0.0145   p 32.06   eps 0.0110   mix 0.2661   time 47.80
+Epoch 354:  train loss 1.1171   train acc 0.2768   worst 0.1365   lr 0.0144   p 32.24   eps 0.0110   mix 0.2647   time 47.86
+Epoch 355:  train loss 1.1102   train acc 0.2753   worst 0.1371   lr 0.0144   p 32.41   eps 0.0111   mix 0.2633   time 47.78
+Epoch 356:  train loss 1.1072   train acc 0.2752   worst 0.1363   lr 0.0144   p 32.59   eps 0.0111   mix 0.2619   time 47.77
+Epoch 357:  train loss 1.1020   train acc 0.2738   worst 0.1370   lr 0.0143   p 32.77   eps 0.0112   mix 0.2606   time 47.85
+Epoch 358:  train loss 1.0983   train acc 0.2757   worst 0.1385   lr 0.0143   p 32.95   eps 0.0113   mix 0.2592   time 47.83
+Epoch 359:  train loss 1.0920   train acc 0.2747   worst 0.1374   lr 0.0143   p 33.13   eps 0.0113   mix 0.2578   time 47.78
+Epoch 360:  train loss 1.0915   train acc 0.2761   worst 0.1374   lr 0.0143   p 33.31   eps 0.0114   mix 0.2565   time 47.77
+Epoch 361:  train loss 1.0857   train acc 0.2739   worst 0.1377   lr 0.0142   p 33.50   eps 0.0114   mix 0.2552   time 47.80
+Epoch 362:  train loss 1.0812   train acc 0.2749   worst 0.1377   lr 0.0142   p 33.68   eps 0.0115   mix 0.2538   time 47.71
+Epoch 363:  train loss 1.0757   train acc 0.2734   worst 0.1371   lr 0.0142   p 33.87   eps 0.0115   mix 0.2525   time 47.57
+Epoch 364:  train loss 1.0689   train acc 0.2717   worst 0.1379   lr 0.0141   p 34.05   eps 0.0116   mix 0.2512   time 47.83
+Epoch 365:  train loss 1.0655   train acc 0.2726   worst 0.1386   lr 0.0141   p 34.24   eps 0.0116   mix 0.2499   time 47.72
+Epoch 366:  train loss 1.0608   train acc 0.2721   worst 0.1381   lr 0.0141   p 34.43   eps 0.0117   mix 0.2486   time 47.67
+Epoch 367:  train loss 1.0590   train acc 0.2721   worst 0.1381   lr 0.0141   p 34.62   eps 0.0117   mix 0.2473   time 47.76
+Epoch 368:  train loss 1.0526   train acc 0.2706   worst 0.1378   lr 0.0140   p 34.81   eps 0.0118   mix 0.2460   time 47.82
+Epoch 369:  train loss 1.0494   train acc 0.2730   worst 0.1379   lr 0.0140   p 35.00   eps 0.0118   mix 0.2447   time 47.80
+Epoch 370:  train loss 1.0438   train acc 0.2714   worst 0.1390   lr 0.0140   p 35.19   eps 0.0119   mix 0.2434   time 47.90
+Epoch 371:  train loss 1.0410   train acc 0.2711   worst 0.1383   lr 0.0139   p 35.39   eps 0.0120   mix 0.2422   time 47.65
+Epoch 372:  train loss 1.0369   train acc 0.2714   worst 0.1370   lr 0.0139   p 35.58   eps 0.0120   mix 0.2409   time 47.71
+Epoch 373:  train loss 1.0334   train acc 0.2718   worst 0.1381   lr 0.0139   p 35.78   eps 0.0121   mix 0.2396   time 47.74
+Epoch 374:  train loss 1.0263   train acc 0.2696   worst 0.1386   lr 0.0139   p 35.97   eps 0.0121   mix 0.2384   time 47.75
+Epoch 375:  train loss 1.0241   train acc 0.2705   worst 0.1381   lr 0.0138   p 36.17   eps 0.0122   mix 0.2371   time 47.88
+Epoch 376:  train loss 1.0207   train acc 0.2710   worst 0.1386   lr 0.0138   p 36.37   eps 0.0122   mix 0.2359   time 47.68
+Epoch 377:  train loss 1.0136   train acc 0.2691   worst 0.1386   lr 0.0138   p 36.57   eps 0.0123   mix 0.2347   time 47.74
+Epoch 378:  train loss 1.0138   train acc 0.2711   worst 0.1387   lr 0.0137   p 36.77   eps 0.0123   mix 0.2334   time 47.72
+Epoch 379:  train loss 1.0085   train acc 0.2709   worst 0.1393   lr 0.0137   p 36.97   eps 0.0124   mix 0.2322   time 47.77
+Epoch 380:  train loss 1.0036   train acc 0.2692   worst 0.1380   lr 0.0137   p 37.18   eps 0.0124   mix 0.2310   time 47.76
+Epoch 381:  train loss 0.9997   train acc 0.2711   worst 0.1400   lr 0.0137   p 37.38   eps 0.0125   mix 0.2298   time 47.77
+Epoch 382:  train loss 0.9951   train acc 0.2690   worst 0.1383   lr 0.0136   p 37.59   eps 0.0126   mix 0.2286   time 47.73
+Epoch 383:  train loss 0.9897   train acc 0.2682   worst 0.1387   lr 0.0136   p 37.80   eps 0.0126   mix 0.2274   time 47.71
+Epoch 384:  train loss 0.9886   train acc 0.2689   worst 0.1379   lr 0.0136   p 38.00   eps 0.0127   mix 0.2262   time 47.75
+Epoch 385:  train loss 0.9855   train acc 0.2704   worst 0.1394   lr 0.0135   p 38.21   eps 0.0127   mix 0.2250   time 47.60
+Epoch 386:  train loss 0.9803   train acc 0.2701   worst 0.1404   lr 0.0135   p 38.42   eps 0.0128   mix 0.2239   time 47.67
+Epoch 387:  train loss 0.9766   train acc 0.2690   worst 0.1381   lr 0.0135   p 38.63   eps 0.0128   mix 0.2227   time 47.74
+Epoch 388:  train loss 0.9717   train acc 0.2676   worst 0.1394   lr 0.0134   p 38.85   eps 0.0129   mix 0.2215   time 47.75
+Epoch 389:  train loss 0.9681   train acc 0.2677   worst 0.1376   lr 0.0134   p 39.06   eps 0.0129   mix 0.2204   time 47.78
+Epoch 390:  train loss 0.9640   train acc 0.2691   worst 0.1405   lr 0.0134   p 39.28   eps 0.0130   mix 0.2192   time 47.57
+Epoch 391:  train loss 0.9586   train acc 0.2672   worst 0.1402   lr 0.0134   p 39.49   eps 0.0130   mix 0.2181   time 47.67
+Epoch 392:  train loss 0.9577   train acc 0.2686   worst 0.1400   lr 0.0133   p 39.71   eps 0.0131   mix 0.2170   time 47.62
+Epoch 393:  train loss 0.9516   train acc 0.2675   worst 0.1413   lr 0.0133   p 39.93   eps 0.0131   mix 0.2158   time 47.65
+Epoch 394:  train loss 0.9496   train acc 0.2670   worst 0.1399   lr 0.0133   p 40.15   eps 0.0132   mix 0.2147   time 47.51
+Epoch 395:  train loss 0.9440   train acc 0.2666   worst 0.1394   lr 0.0132   p 40.37   eps 0.0133   mix 0.2136   time 47.71
+Epoch 396:  train loss 0.9390   train acc 0.2674   worst 0.1422   lr 0.0132   p 40.59   eps 0.0133   mix 0.2125   time 47.81
+Epoch 397:  train loss 0.9379   train acc 0.2678   worst 0.1407   lr 0.0132   p 40.81   eps 0.0134   mix 0.2113   time 47.70
+Epoch 398:  train loss 0.9332   train acc 0.2668   worst 0.1394   lr 0.0131   p 41.04   eps 0.0134   mix 0.2102   time 47.52
+Epoch 399:  train loss 0.9278   train acc 0.2653   worst 0.1409   lr 0.0131   p 41.26   eps 0.0135   mix 0.2091   time 47.58
+Epoch 400:  train loss 0.9252   train acc 0.2662   worst 0.1408   lr 0.0131   p 41.49   eps 0.0135   mix 0.2081   time 47.63
+Epoch 401:  train loss 0.9216   train acc 0.2652   worst 0.1390   lr 0.0131   p 41.72   eps 0.0136   mix 0.2070   time 47.60
+Epoch 402:  train loss 0.9191   train acc 0.2662   worst 0.1393   lr 0.0130   p 41.95   eps 0.0136   mix 0.2059   time 47.57
+Epoch 403:  train loss 0.9134   train acc 0.2650   worst 0.1407   lr 0.0130   p 42.18   eps 0.0137   mix 0.2048   time 47.60
+Epoch 404:  train loss 0.9127   train acc 0.2670   worst 0.1401   lr 0.0130   p 42.41   eps 0.0137   mix 0.2037   time 47.50
+Epoch 405:  train loss 0.9090   train acc 0.2660   worst 0.1403   lr 0.0129   p 42.64   eps 0.0138   mix 0.2027   time 47.60
+Epoch 406:  train loss 0.9056   train acc 0.2669   worst 0.1403   lr 0.0129   p 42.88   eps 0.0139   mix 0.2016   time 47.53
+Epoch 407:  train loss 0.8992   train acc 0.2662   worst 0.1414   lr 0.0129   p 43.11   eps 0.0139   mix 0.2006   time 47.47
+Epoch 408:  train loss 0.8936   train acc 0.2637   worst 0.1419   lr 0.0129   p 43.35   eps 0.0140   mix 0.1995   time 47.63
+Epoch 409:  train loss 0.8911   train acc 0.2639   worst 0.1413   lr 0.0128   p 43.59   eps 0.0140   mix 0.1985   time 47.54
+Epoch 410:  train loss 0.8886   train acc 0.2642   worst 0.1399   lr 0.0128   p 43.83   eps 0.0141   mix 0.1974   time 47.57
+Epoch 411:  train loss 0.8846   train acc 0.2635   worst 0.1414   lr 0.0128   p 44.07   eps 0.0141   mix 0.1964   time 47.63
+Epoch 412:  train loss 0.8804   train acc 0.2636   worst 0.1411   lr 0.0127   p 44.31   eps 0.0142   mix 0.1954   time 47.54
+Epoch 413:  train loss 0.8799   train acc 0.2639   worst 0.1397   lr 0.0127   p 44.56   eps 0.0142   mix 0.1944   time 47.61
+Epoch 414:  train loss 0.8741   train acc 0.2632   worst 0.1401   lr 0.0127   p 44.80   eps 0.0143   mix 0.1934   time 47.64
+Epoch 415:  train loss 0.8700   train acc 0.2622   worst 0.1416   lr 0.0126   p 45.05   eps 0.0143   mix 0.1923   time 47.48
+Epoch 416:  train loss 0.8667   train acc 0.2623   worst 0.1413   lr 0.0126   p 45.30   eps 0.0144   mix 0.1913   time 47.38
+Epoch 417:  train loss 0.8636   train acc 0.2617   worst 0.1407   lr 0.0126   p 45.55   eps 0.0144   mix 0.1903   time 47.53
+Epoch 418:  train loss 0.8605   train acc 0.2626   worst 0.1412   lr 0.0125   p 45.80   eps 0.0145   mix 0.1894   time 47.59
+Epoch 419:  train loss 0.8559   train acc 0.2618   worst 0.1414   lr 0.0125   p 46.05   eps 0.0146   mix 0.1884   time 47.43
+Epoch 420:  train loss 0.8545   train acc 0.2628   worst 0.1404   lr 0.0125   p 46.30   eps 0.0146   mix 0.1874   time 47.52
+Epoch 421:  train loss 0.8515   train acc 0.2644   worst 0.1423   lr 0.0125   p 46.56   eps 0.0147   mix 0.1864   time 47.58
+Epoch 422:  train loss 0.8469   train acc 0.2622   worst 0.1409   lr 0.0124   p 46.81   eps 0.0147   mix 0.1854   time 47.59
+Epoch 423:  train loss 0.8433   train acc 0.2620   worst 0.1418   lr 0.0124   p 47.07   eps 0.0148   mix 0.1845   time 47.62
+Epoch 424:  train loss 0.8377   train acc 0.2608   worst 0.1425   lr 0.0124   p 47.33   eps 0.0148   mix 0.1835   time 47.41
+Epoch 425:  train loss 0.8361   train acc 0.2610   worst 0.1417   lr 0.0123   p 47.59   eps 0.0149   mix 0.1825   time 47.32
+Epoch 426:  train loss 0.8348   train acc 0.2616   worst 0.1407   lr 0.0123   p 47.85   eps 0.0149   mix 0.1816   time 47.60
+Epoch 427:  train loss 0.8310   train acc 0.2625   worst 0.1427   lr 0.0123   p 48.12   eps 0.0150   mix 0.1806   time 47.30
+Epoch 428:  train loss 0.8272   train acc 0.2612   worst 0.1418   lr 0.0122   p 48.38   eps 0.0150   mix 0.1797   time 47.39
+Epoch 429:  train loss 0.8247   train acc 0.2615   worst 0.1419   lr 0.0122   p 48.65   eps 0.0151   mix 0.1788   time 47.44
+Epoch 430:  train loss 0.8226   train acc 0.2626   worst 0.1420   lr 0.0122   p 48.91   eps 0.0151   mix 0.1778   time 47.48
+Epoch 431:  train loss 0.8186   train acc 0.2620   worst 0.1426   lr 0.0122   p 49.18   eps 0.0152   mix 0.1769   time 47.43
+Epoch 432:  train loss 0.8139   train acc 0.2609   worst 0.1418   lr 0.0121   p 49.45   eps 0.0153   mix 0.1760   time 47.44
+Epoch 433:  train loss 0.8128   train acc 0.2603   worst 0.1416   lr 0.0121   p 49.73   eps 0.0153   mix 0.1751   time 47.49
+Epoch 434:  train loss 0.8109   train acc 0.2613   worst 0.1419   lr 0.0121   p 50.00   eps 0.0154   mix 0.1741   time 47.41
+Epoch 435:  train loss 0.8068   train acc 0.2624   worst 0.1422   lr 0.0120   p 50.27   eps 0.0154   mix 0.1732   time 47.36
+Epoch 436:  train loss 0.8026   train acc 0.2613   worst 0.1430   lr 0.0120   p 50.55   eps 0.0155   mix 0.1723   time 47.47
+Epoch 437:  train loss 0.7972   train acc 0.2591   worst 0.1425   lr 0.0120   p 50.83   eps 0.0155   mix 0.1714   time 47.34
+Epoch 438:  train loss 0.7938   train acc 0.2596   worst 0.1426   lr 0.0119   p 51.11   eps 0.0156   mix 0.1705   time 47.30
+Epoch 439:  train loss 0.7926   train acc 0.2607   worst 0.1423   lr 0.0119   p 51.39   eps 0.0156   mix 0.1696   time 47.46
+Epoch 440:  train loss 0.7890   train acc 0.2606   worst 0.1430   lr 0.0119   p 51.67   eps 0.0157   mix 0.1688   time 47.41
+Epoch 441:  train loss 0.7862   train acc 0.2600   worst 0.1422   lr 0.0118   p 51.96   eps 0.0157   mix 0.1679   time 47.37
+Epoch 442:  train loss 0.7835   train acc 0.2597   worst 0.1431   lr 0.0118   p 52.24   eps 0.0158   mix 0.1670   time 47.41
+Epoch 443:  train loss 0.7837   train acc 0.2609   worst 0.1416   lr 0.0118   p 52.53   eps 0.0159   mix 0.1661   time 47.40
+Epoch 444:  train loss 0.7787   train acc 0.2598   worst 0.1422   lr 0.0118   p 52.82   eps 0.0159   mix 0.1653   time 47.27
+Epoch 445:  train loss 0.7730   train acc 0.2585   worst 0.1419   lr 0.0117   p 53.11   eps 0.0160   mix 0.1644   time 47.42
+Epoch 446:  train loss 0.7735   train acc 0.2607   worst 0.1429   lr 0.0117   p 53.40   eps 0.0160   mix 0.1635   time 47.38
+Epoch 447:  train loss 0.7667   train acc 0.2583   worst 0.1435   lr 0.0117   p 53.70   eps 0.0161   mix 0.1627   time 47.33
+Epoch 448:  train loss 0.7659   train acc 0.2596   worst 0.1427   lr 0.0116   p 53.99   eps 0.0161   mix 0.1618   time 47.40
+Epoch 449:  train loss 0.7610   train acc 0.2574   worst 0.1429   lr 0.0116   p 54.29   eps 0.0162   mix 0.1610   time 47.38
+Epoch 450:  train loss 0.7608   train acc 0.2593   worst 0.1420   lr 0.0116   p 54.59   eps 0.0162   mix 0.1602   time 47.31
+Epoch 451:  train loss 0.7558   train acc 0.2573   worst 0.1428   lr 0.0115   p 54.89   eps 0.0163   mix 0.1593   time 47.28
+Epoch 452:  train loss 0.7537   train acc 0.2569   worst 0.1423   lr 0.0115   p 55.19   eps 0.0163   mix 0.1585   time 47.19
+Epoch 453:  train loss 0.7509   train acc 0.2584   worst 0.1439   lr 0.0115   p 55.49   eps 0.0164   mix 0.1577   time 47.32
+Epoch 454:  train loss 0.7465   train acc 0.2566   worst 0.1429   lr 0.0114   p 55.80   eps 0.0164   mix 0.1568   time 47.44
+Epoch 455:  train loss 0.7447   train acc 0.2575   worst 0.1428   lr 0.0114   p 56.11   eps 0.0165   mix 0.1560   time 47.13
+Epoch 456:  train loss 0.7396   train acc 0.2563   worst 0.1425   lr 0.0114   p 56.41   eps 0.0166   mix 0.1552   time 47.43
+Epoch 457:  train loss 0.7395   train acc 0.2580   worst 0.1434   lr 0.0113   p 56.72   eps 0.0166   mix 0.1544   time 47.20
+Epoch 458:  train loss 0.7358   train acc 0.2572   worst 0.1436   lr 0.0113   p 57.04   eps 0.0167   mix 0.1536   time 47.17
+Epoch 459:  train loss 0.7326   train acc 0.2565   worst 0.1435   lr 0.0113   p 57.35   eps 0.0167   mix 0.1528   time 47.35
+Epoch 460:  train loss 0.7286   train acc 0.2560   worst 0.1429   lr 0.0113   p 57.67   eps 0.0168   mix 0.1520   time 47.35
+Epoch 461:  train loss 0.7276   train acc 0.2565   worst 0.1431   lr 0.0112   p 57.98   eps 0.0168   mix 0.1512   time 47.29
+Epoch 462:  train loss 0.7246   train acc 0.2562   worst 0.1434   lr 0.0112   p 58.30   eps 0.0169   mix 0.1504   time 47.31
+Epoch 463:  train loss 0.7224   train acc 0.2573   worst 0.1439   lr 0.0112   p 58.62   eps 0.0169   mix 0.1496   time 47.33
+Epoch 464:  train loss 0.7192   train acc 0.2571   worst 0.1441   lr 0.0111   p 58.95   eps 0.0170   mix 0.1488   time 47.37
+Epoch 465:  train loss 0.7166   train acc 0.2577   worst 0.1443   lr 0.0111   p 59.27   eps 0.0170   mix 0.1481   time 47.34
+Epoch 466:  train loss 0.7104   train acc 0.2550   worst 0.1443   lr 0.0111   p 59.60   eps 0.0171   mix 0.1473   time 47.39
+Epoch 467:  train loss 0.7128   train acc 0.2583   worst 0.1446   lr 0.0110   p 59.92   eps 0.0172   mix 0.1465   time 47.32
+Epoch 468:  train loss 0.7077   train acc 0.2560   worst 0.1437   lr 0.0110   p 60.25   eps 0.0172   mix 0.1458   time 47.29
+Epoch 469:  train loss 0.7061   train acc 0.2576   worst 0.1454   lr 0.0110   p 60.58   eps 0.0173   mix 0.1450   time 47.36
+Epoch 470:  train loss 0.7040   train acc 0.2567   worst 0.1432   lr 0.0109   p 60.92   eps 0.0173   mix 0.1442   time 47.44
+Epoch 471:  train loss 0.7014   train acc 0.2570   worst 0.1437   lr 0.0109   p 61.25   eps 0.0174   mix 0.1435   time 47.31
+Epoch 472:  train loss 0.6985   train acc 0.2561   worst 0.1436   lr 0.0109   p 61.59   eps 0.0174   mix 0.1427   time 47.36
+Epoch 473:  train loss 0.6963   train acc 0.2564   worst 0.1435   lr 0.0108   p 61.93   eps 0.0175   mix 0.1420   time 47.39
+Epoch 474:  train loss 0.6932   train acc 0.2562   worst 0.1437   lr 0.0108   p 62.27   eps 0.0175   mix 0.1413   time 47.30
+Epoch 475:  train loss 0.6909   train acc 0.2566   worst 0.1442   lr 0.0108   p 62.61   eps 0.0176   mix 0.1405   time 47.41
+Epoch 476:  train loss 0.6897   train acc 0.2568   worst 0.1439   lr 0.0108   p 62.96   eps 0.0176   mix 0.1398   time 47.27
+Epoch 477:  train loss 0.6847   train acc 0.2557   worst 0.1444   lr 0.0107   p 63.30   eps 0.0177   mix 0.1391   time 47.32
+Epoch 478:  train loss 0.6824   train acc 0.2557   worst 0.1433   lr 0.0107   p 63.65   eps 0.0177   mix 0.1383   time 47.35
+Epoch 479:  train loss 0.6802   train acc 0.2551   worst 0.1440   lr 0.0107   p 64.00   eps 0.0178   mix 0.1376   time 47.35
+Epoch 480:  train loss 0.6785   train acc 0.2561   worst 0.1442   lr 0.0106   p 64.35   eps 0.0179   mix 0.1369   time 47.32
+Epoch 481:  train loss 0.6732   train acc 0.2539   worst 0.1440   lr 0.0106   p 64.71   eps 0.0179   mix 0.1362   time 47.25
+Epoch 482:  train loss 0.6716   train acc 0.2546   worst 0.1447   lr 0.0106   p 65.06   eps 0.0180   mix 0.1355   time 47.36
+Epoch 483:  train loss 0.6703   train acc 0.2550   worst 0.1429   lr 0.0105   p 65.42   eps 0.0180   mix 0.1348   time 47.31
+Epoch 484:  train loss 0.6688   train acc 0.2555   worst 0.1433   lr 0.0105   p 65.78   eps 0.0181   mix 0.1341   time 47.27
+Epoch 485:  train loss 0.6641   train acc 0.2546   worst 0.1450   lr 0.0105   p 66.14   eps 0.0181   mix 0.1334   time 47.47
+Epoch 486:  train loss 0.6637   train acc 0.2546   worst 0.1434   lr 0.0104   p 66.51   eps 0.0182   mix 0.1327   time 47.36
+Epoch 487:  train loss 0.6609   train acc 0.2536   worst 0.1421   lr 0.0104   p 66.87   eps 0.0182   mix 0.1320   time 47.32
+Epoch 488:  train loss 0.6561   train acc 0.2536   worst 0.1436   lr 0.0104   p 67.24   eps 0.0183   mix 0.1313   time 47.35
+Epoch 489:  train loss 0.6559   train acc 0.2550   worst 0.1453   lr 0.0103   p 67.61   eps 0.0183   mix 0.1306   time 47.40
+Epoch 490:  train loss 0.6522   train acc 0.2535   worst 0.1441   lr 0.0103   p 67.98   eps 0.0184   mix 0.1299   time 47.33
+Epoch 491:  train loss 0.6510   train acc 0.2551   worst 0.1449   lr 0.0103   p 68.36   eps 0.0184   mix 0.1292   time 47.37
+Epoch 492:  train loss 0.6492   train acc 0.2541   worst 0.1438   lr 0.0103   p 68.73   eps 0.0185   mix 0.1286   time 47.30
+Epoch 493:  train loss 0.6450   train acc 0.2538   worst 0.1443   lr 0.0102   p 69.11   eps 0.0186   mix 0.1279   time 47.26
+Epoch 494:  train loss 0.6430   train acc 0.2541   worst 0.1444   lr 0.0102   p 69.49   eps 0.0186   mix 0.1272   time 47.44
+Epoch 495:  train loss 0.6423   train acc 0.2543   worst 0.1443   lr 0.0102   p 69.87   eps 0.0187   mix 0.1266   time 47.33
+Epoch 496:  train loss 0.6379   train acc 0.2536   worst 0.1451   lr 0.0101   p 70.26   eps 0.0187   mix 0.1259   time 47.39
+Epoch 497:  train loss 0.6351   train acc 0.2535   worst 0.1455   lr 0.0101   p 70.65   eps 0.0188   mix 0.1252   time 47.26
+Epoch 498:  train loss 0.6317   train acc 0.2527   worst 0.1454   lr 0.0101   p 71.03   eps 0.0188   mix 0.1246   time 47.22
+Epoch 499:  train loss 0.6307   train acc 0.2522   worst 0.1439   lr 0.0100   p 71.42   eps 0.0189   mix 0.1239   time 47.22
+Epoch 500:  train loss 0.6292   train acc 0.2530   worst 0.1446   lr 0.0100   p 71.82   eps 0.0189   mix 0.1233   time 47.22
+Epoch 501:  train loss 0.6270   train acc 0.2540   worst 0.1444   lr 0.0100   p 72.21   eps 0.0189   mix 0.1226   time 47.27
+Epoch 502:  train loss 0.6220   train acc 0.2513   worst 0.1446   lr 0.0099   p 72.61   eps 0.0189   mix 0.1220   time 47.32
+Epoch 503:  train loss 0.6187   train acc 0.2521   worst 0.1464   lr 0.0099   p 73.01   eps 0.0189   mix 0.1214   time 47.20
+Epoch 504:  train loss 0.6176   train acc 0.2520   worst 0.1448   lr 0.0099   p 73.41   eps 0.0189   mix 0.1207   time 47.26
+Epoch 505:  train loss 0.6158   train acc 0.2522   worst 0.1458   lr 0.0098   p 73.82   eps 0.0189   mix 0.1201   time 47.26
+Epoch 506:  train loss 0.6143   train acc 0.2540   worst 0.1470   lr 0.0098   p 74.22   eps 0.0189   mix 0.1195   time 47.26
+Epoch 507:  train loss 0.6123   train acc 0.2526   worst 0.1457   lr 0.0098   p 74.63   eps 0.0189   mix 0.1189   time 47.26
+Epoch 508:  train loss 0.6091   train acc 0.2537   worst 0.1465   lr 0.0097   p 75.04   eps 0.0189   mix 0.1182   time 47.13
+Epoch 509:  train loss 0.6054   train acc 0.2517   worst 0.1465   lr 0.0097   p 75.45   eps 0.0189   mix 0.1176   time 47.24
+Epoch 510:  train loss 0.6053   train acc 0.2529   worst 0.1462   lr 0.0097   p 75.87   eps 0.0189   mix 0.1170   time 47.27
+Epoch 511:  train loss 0.6023   train acc 0.2540   worst 0.1483   lr 0.0097   p 76.29   eps 0.0189   mix 0.1164   time 47.23
+Epoch 512:  train loss 0.5999   train acc 0.2531   worst 0.1479   lr 0.0096   p 76.71   eps 0.0189   mix 0.1158   time 47.27
+Epoch 513:  train loss 0.5971   train acc 0.2529   worst 0.1468   lr 0.0096   p 77.13   eps 0.0189   mix 0.1152   time 47.23
+Epoch 514:  train loss 0.5949   train acc 0.2526   worst 0.1472   lr 0.0096   p 77.55   eps 0.0189   mix 0.1146   time 47.22
+Epoch 515:  train loss 0.5916   train acc 0.2523   worst 0.1479   lr 0.0095   p 77.98   eps 0.0189   mix 0.1140   time 47.30
+Epoch 516:  train loss 0.5917   train acc 0.2531   worst 0.1473   lr 0.0095   p 78.41   eps 0.0189   mix 0.1134   time 47.27
+Epoch 517:  train loss 0.5892   train acc 0.2531   worst 0.1484   lr 0.0095   p 78.84   eps 0.0189   mix 0.1128   time 47.23
+Epoch 518:  train loss 0.5852   train acc 0.2526   worst 0.1487   lr 0.0094   p 79.27   eps 0.0189   mix 0.1122   time 47.26
+Epoch 519:  train loss 0.5829   train acc 0.2525   worst 0.1482   lr 0.0094   p 79.71   eps 0.0189   mix 0.1116   time 47.17
+Epoch 520:  train loss 0.5816   train acc 0.2521   worst 0.1478   lr 0.0094   p 80.15   eps 0.0189   mix 0.1110   time 47.12
+Epoch 521:  train loss 0.5780   train acc 0.2519   worst 0.1495   lr 0.0093   p 80.59   eps 0.0189   mix 0.1105   time 47.24
+Epoch 522:  train loss 0.5791   train acc 0.2537   worst 0.1477   lr 0.0093   p 81.03   eps 0.0189   mix 0.1099   time 47.37
+Epoch 523:  train loss 0.5770   train acc 0.2541   worst 0.1493   lr 0.0093   p 81.48   eps 0.0189   mix 0.1093   time 47.20
+Epoch 524:  train loss 0.5718   train acc 0.2520   worst 0.1494   lr 0.0092   p 81.93   eps 0.0189   mix 0.1087   time 47.16
+Epoch 525:  train loss 0.5694   train acc 0.2522   worst 0.1504   lr 0.0092   p 82.38   eps 0.0189   mix 0.1082   time 47.15
+Epoch 526:  train loss 0.5677   train acc 0.2523   worst 0.1498   lr 0.0092   p 82.83   eps 0.0189   mix 0.1076   time 47.14
+Epoch 527:  train loss 0.5667   train acc 0.2533   worst 0.1504   lr 0.0092   p 83.29   eps 0.0189   mix 0.1070   time 47.04
+Epoch 528:  train loss 0.5633   train acc 0.2517   worst 0.1497   lr 0.0091   p 83.74   eps 0.0189   mix 0.1065   time 47.04
+Epoch 529:  train loss 0.5609   train acc 0.2508   worst 0.1489   lr 0.0091   p 84.20   eps 0.0189   mix 0.1059   time 47.11
+Epoch 530:  train loss 0.5593   train acc 0.2532   worst 0.1513   lr 0.0091   p 84.67   eps 0.0189   mix 0.1054   time 47.09
+Epoch 531:  train loss 0.5568   train acc 0.2525   worst 0.1506   lr 0.0090   p 85.13   eps 0.0189   mix 0.1048   time 47.17
+Epoch 532:  train loss 0.5556   train acc 0.2527   worst 0.1510   lr 0.0090   p 85.60   eps 0.0189   mix 0.1043   time 47.08
+Epoch 533:  train loss 0.5524   train acc 0.2518   worst 0.1515   lr 0.0090   p 86.07   eps 0.0189   mix 0.1037   time 47.05
+Epoch 534:  train loss 0.5499   train acc 0.2520   worst 0.1520   lr 0.0089   p 86.55   eps 0.0189   mix 0.1032   time 47.05
+Epoch 535:  train loss 0.5472   train acc 0.2512   worst 0.1503   lr 0.0089   p 87.02   eps 0.0189   mix 0.1027   time 47.32
+Epoch 536:  train loss 0.5475   train acc 0.2534   worst 0.1524   lr 0.0089   p 87.50   eps 0.0189   mix 0.1021   time 47.17
+Epoch 537:  train loss 0.5463   train acc 0.2533   worst 0.1509   lr 0.0088   p 87.98   eps 0.0189   mix 0.1016   time 47.19
+Epoch 538:  train loss 0.5430   train acc 0.2527   worst 0.1513   lr 0.0088   p 88.47   eps 0.0189   mix 0.1011   time 47.19
+Epoch 539:  train loss 0.5396   train acc 0.2513   worst 0.1517   lr 0.0088   p 88.95   eps 0.0189   mix 0.1005   time 47.12
+Epoch 540:  train loss 0.5397   train acc 0.2541   worst 0.1535   lr 0.0087   p 89.44   eps 0.0189   mix 0.1000   time 47.16
+Epoch 541:  train loss 0.5355   train acc 0.2518   worst 0.1518   lr 0.0087   p 89.93   eps 0.0189   mix 0.0995   time 47.09
+Epoch 542:  train loss 0.5357   train acc 0.2530   worst 0.1529   lr 0.0087   p 90.43   eps 0.0189   mix 0.0990   time 47.18
+Epoch 543:  train loss 0.5316   train acc 0.2513   worst 0.1525   lr 0.0087   p 90.93   eps 0.0189   mix 0.0984   time 47.07
+Epoch 544:  train loss 0.5300   train acc 0.2528   worst 0.1536   lr 0.0086   p 91.43   eps 0.0189   mix 0.0979   time 46.97
+Epoch 545:  train loss 0.5276   train acc 0.2516   worst 0.1531   lr 0.0086   p 91.93   eps 0.0189   mix 0.0974   time 47.02
+Epoch 546:  train loss 0.5265   train acc 0.2530   worst 0.1543   lr 0.0086   p 92.44   eps 0.0189   mix 0.0969   time 47.13
+Epoch 547:  train loss 0.5249   train acc 0.2525   worst 0.1532   lr 0.0085   p 92.94   eps 0.0189   mix 0.0964   time 47.13
+Epoch 548:  train loss 0.5225   train acc 0.2526   worst 0.1544   lr 0.0085   p 93.46   eps 0.0189   mix 0.0959   time 47.10
+Epoch 549:  train loss 0.5227   train acc 0.2540   worst 0.1540   lr 0.0085   p 93.97   eps 0.0189   mix 0.0954   time 47.17
+Epoch 550:  train loss 0.5189   train acc 0.2529   worst 0.1548   lr 0.0084   p 94.49   eps 0.0189   mix 0.0949   time 47.16
+Epoch 551:  train loss 0.5175   train acc 0.2529   worst 0.1543   lr 0.0084   p 95.01   eps 0.0189   mix 0.0944   time 47.19
+Epoch 552:  train loss 0.5139   train acc 0.2519   worst 0.1540   lr 0.0084   p 95.53   eps 0.0189   mix 0.0939   time 46.99
+Epoch 553:  train loss 0.5132   train acc 0.2517   worst 0.1533   lr 0.0083   p 96.06   eps 0.0189   mix 0.0934   time 47.12
+Epoch 554:  train loss 0.5125   train acc 0.2521   worst 0.1532   lr 0.0083   p 96.58   eps 0.0189   mix 0.0929   time 47.00
+Epoch 555:  train loss 0.5083   train acc 0.2522   worst 0.1551   lr 0.0083   p 97.12   eps 0.0189   mix 0.0925   time 47.01
+Epoch 556:  train loss 0.5048   train acc 0.2510   worst 0.1557   lr 0.0082   p 97.65   eps 0.0189   mix 0.0920   time 46.91
+Epoch 557:  train loss 0.5063   train acc 0.2524   worst 0.1545   lr 0.0082   p 98.19   eps 0.0189   mix 0.0915   time 47.04
+Epoch 558:  train loss 0.5042   train acc 0.2532   worst 0.1552   lr 0.0082   p 98.73   eps 0.0189   mix 0.0910   time 47.11
+Epoch 559:  train loss 0.5013   train acc 0.2529   worst 0.1562   lr 0.0082   p 99.27   eps 0.0189   mix 0.0905   time 47.03
+Epoch 560:  train loss 0.4993   train acc 0.2525   worst 0.1561   lr 0.0081   p 99.82   eps 0.0189   mix 0.0901   time 47.10
+Epoch 561:  train loss 0.4974   train acc 0.2523   worst 0.1558   lr 0.0081   p 100.37   eps 0.0189   mix 0.0896   time 47.09
+Epoch 562:  train loss 0.4970   train acc 0.2536   worst 0.1560   lr 0.0081   p 100.92   eps 0.0189   mix 0.0891   time 47.03
+Epoch 563:  train loss 0.4965   train acc 0.2534   worst 0.1568   lr 0.0080   p 101.47   eps 0.0189   mix 0.0887   time 47.08
+Epoch 564:  train loss 0.4900   train acc 0.2513   worst 0.1569   lr 0.0080   p 102.03   eps 0.0189   mix 0.0882   time 47.09
+Epoch 565:  train loss 0.4896   train acc 0.2519   worst 0.1573   lr 0.0080   p 102.59   eps 0.0189   mix 0.0877   time 47.05
+Epoch 566:  train loss 0.4894   train acc 0.2526   worst 0.1569   lr 0.0079   p 103.16   eps 0.0189   mix 0.0873   time 47.15
+Epoch 567:  train loss 0.4873   train acc 0.2525   worst 0.1561   lr 0.0079   p 103.72   eps 0.0189   mix 0.0868   time 47.03
+Epoch 568:  train loss 0.4855   train acc 0.2525   worst 0.1562   lr 0.0079   p 104.30   eps 0.0189   mix 0.0864   time 47.07
+Epoch 569:  train loss 0.4833   train acc 0.2518   worst 0.1573   lr 0.0078   p 104.87   eps 0.0189   mix 0.0859   time 47.18
+Epoch 570:  train loss 0.4830   train acc 0.2528   worst 0.1569   lr 0.0078   p 105.45   eps 0.0189   mix 0.0855   time 47.11
+Epoch 571:  train loss 0.4793   train acc 0.2520   worst 0.1579   lr 0.0078   p 106.03   eps 0.0189   mix 0.0850   time 46.98
+Epoch 572:  train loss 0.4774   train acc 0.2515   worst 0.1578   lr 0.0078   p 106.61   eps 0.0189   mix 0.0846   time 47.19
+Epoch 573:  train loss 0.4779   train acc 0.2527   worst 0.1578   lr 0.0077   p 107.20   eps 0.0189   mix 0.0841   time 47.04
+Epoch 574:  train loss 0.4764   train acc 0.2538   worst 0.1588   lr 0.0077   p 107.79   eps 0.0189   mix 0.0837   time 47.10
+Epoch 575:  train loss 0.4738   train acc 0.2526   worst 0.1583   lr 0.0077   p 108.38   eps 0.0189   mix 0.0833   time 47.14
+Epoch 576:  train loss 0.4732   train acc 0.2537   worst 0.1584   lr 0.0076   p 108.98   eps 0.0189   mix 0.0828   time 47.08
+Epoch 577:  train loss 0.4692   train acc 0.2527   worst 0.1594   lr 0.0076   p 109.57   eps 0.0189   mix 0.0824   time 47.07
+Epoch 578:  train loss 0.4673   train acc 0.2523   worst 0.1595   lr 0.0076   p 110.18   eps 0.0189   mix 0.0820   time 47.11
+Epoch 579:  train loss 0.4667   train acc 0.2523   worst 0.1584   lr 0.0075   p 110.78   eps 0.0189   mix 0.0815   time 47.09
+Epoch 580:  train loss 0.4669   train acc 0.2539   worst 0.1598   lr 0.0075   p 111.39   eps 0.0189   mix 0.0811   time 47.05
+Epoch 581:  train loss 0.4637   train acc 0.2533   worst 0.1603   lr 0.0075   p 112.01   eps 0.0189   mix 0.0807   time 47.04
+Epoch 582:  train loss 0.4619   train acc 0.2523   worst 0.1593   lr 0.0075   p 112.62   eps 0.0189   mix 0.0803   time 46.94
+Epoch 583:  train loss 0.4594   train acc 0.2528   worst 0.1605   lr 0.0074   p 113.24   eps 0.0189   mix 0.0798   time 47.05
+Epoch 584:  train loss 0.4585   train acc 0.2529   worst 0.1600   lr 0.0074   p 113.87   eps 0.0189   mix 0.0794   time 47.04
+Epoch 585:  train loss 0.4575   train acc 0.2534   worst 0.1602   lr 0.0074   p 114.49   eps 0.0189   mix 0.0790   time 47.03
+Epoch 586:  train loss 0.4555   train acc 0.2537   worst 0.1603   lr 0.0073   p 115.12   eps 0.0189   mix 0.0786   time 46.94
+Epoch 587:  train loss 0.4552   train acc 0.2540   worst 0.1609   lr 0.0073   p 115.75   eps 0.0189   mix 0.0782   time 47.09
+Epoch 588:  train loss 0.4532   train acc 0.2531   worst 0.1606   lr 0.0073   p 116.39   eps 0.0189   mix 0.0778   time 46.95
+Epoch 589:  train loss 0.4484   train acc 0.2518   worst 0.1610   lr 0.0072   p 117.03   eps 0.0189   mix 0.0774   time 46.98
+Epoch 590:  train loss 0.4495   train acc 0.2534   worst 0.1603   lr 0.0072   p 117.68   eps 0.0189   mix 0.0770   time 47.00
+Epoch 591:  train loss 0.4486   train acc 0.2539   worst 0.1607   lr 0.0072   p 118.32   eps 0.0189   mix 0.0766   time 46.84
+Epoch 592:  train loss 0.4464   train acc 0.2535   worst 0.1617   lr 0.0071   p 118.97   eps 0.0189   mix 0.0762   time 46.87
+Epoch 593:  train loss 0.4437   train acc 0.2523   worst 0.1614   lr 0.0071   p 119.63   eps 0.0189   mix 0.0758   time 46.90
+Epoch 594:  train loss 0.4412   train acc 0.2519   worst 0.1616   lr 0.0071   p 120.29   eps 0.0189   mix 0.0754   time 47.05
+Epoch 595:  train loss 0.4412   train acc 0.2526   worst 0.1620   lr 0.0071   p 120.95   eps 0.0189   mix 0.0750   time 46.92
+Epoch 596:  train loss 0.4398   train acc 0.2528   worst 0.1609   lr 0.0070   p 121.61   eps 0.0189   mix 0.0746   time 46.96
+Epoch 597:  train loss 0.4369   train acc 0.2527   worst 0.1624   lr 0.0070   p 122.28   eps 0.0189   mix 0.0742   time 46.99
+Epoch 598:  train loss 0.4380   train acc 0.2536   worst 0.1618   lr 0.0070   p 122.96   eps 0.0189   mix 0.0738   time 46.96
+Epoch 599:  train loss 0.4356   train acc 0.2538   worst 0.1635   lr 0.0069   p 123.63   eps 0.0189   mix 0.0734   time 47.10
+Epoch 600:  train loss 0.4345   train acc 0.2539   worst 0.1623   lr 0.0069   p 124.31   eps 0.0189   mix 0.0731   time 46.92
+Epoch 601:  train loss 0.4335   train acc 0.2548   worst 0.1637   lr 0.0069   p 125.00   eps 0.0189   mix 0.0727   time 46.92
+Epoch 602:  train loss 0.4320   train acc 0.2543   worst 0.1638   lr 0.0069   p 125.68   eps 0.0189   mix 0.0723   time 46.90
+Epoch 603:  train loss 0.4306   train acc 0.2546   worst 0.1635   lr 0.0068   p 126.38   eps 0.0189   mix 0.0719   time 47.00
+Epoch 604:  train loss 0.4273   train acc 0.2537   worst 0.1647   lr 0.0068   p 127.07   eps 0.0189   mix 0.0715   time 47.08
+Epoch 605:  train loss 0.4261   train acc 0.2532   worst 0.1632   lr 0.0068   p 127.77   eps 0.0189   mix 0.0712   time 47.06
+Epoch 606:  train loss 0.4256   train acc 0.2548   worst 0.1638   lr 0.0067   p 128.47   eps 0.0189   mix 0.0708   time 46.98
+Epoch 607:  train loss 0.4247   train acc 0.2533   worst 0.1628   lr 0.0067   p 129.18   eps 0.0189   mix 0.0704   time 47.10
+Epoch 608:  train loss 0.4232   train acc 0.2536   worst 0.1637   lr 0.0067   p 129.89   eps 0.0189   mix 0.0701   time 46.89
+Epoch 609:  train loss 0.4222   train acc 0.2540   worst 0.1634   lr 0.0066   p 130.61   eps 0.0189   mix 0.0697   time 46.94
+Epoch 610:  train loss 0.4201   train acc 0.2530   worst 0.1636   lr 0.0066   p 131.32   eps 0.0189   mix 0.0693   time 47.00
+Epoch 611:  train loss 0.4166   train acc 0.2532   worst 0.1651   lr 0.0066   p 132.05   eps 0.0189   mix 0.0690   time 46.99
+Epoch 612:  train loss 0.4178   train acc 0.2546   worst 0.1646   lr 0.0066   p 132.77   eps 0.0189   mix 0.0686   time 46.97
+Epoch 613:  train loss 0.4169   train acc 0.2545   worst 0.1634   lr 0.0065   p 133.50   eps 0.0189   mix 0.0682   time 47.00
+Epoch 614:  train loss 0.4139   train acc 0.2534   worst 0.1648   lr 0.0065   p 134.24   eps 0.0189   mix 0.0679   time 46.99
+Epoch 615:  train loss 0.4126   train acc 0.2539   worst 0.1652   lr 0.0065   p 134.98   eps 0.0189   mix 0.0675   time 47.05
+Epoch 616:  train loss 0.4103   train acc 0.2534   worst 0.1652   lr 0.0064   p 135.72   eps 0.0189   mix 0.0672   time 46.96
+Epoch 617:  train loss 0.4108   train acc 0.2540   worst 0.1658   lr 0.0064   p 136.47   eps 0.0189   mix 0.0668   time 46.99
+Epoch 618:  train loss 0.4075   train acc 0.2527   worst 0.1649   lr 0.0064   p 137.22   eps 0.0189   mix 0.0665   time 46.94
+Epoch 619:  train loss 0.4084   train acc 0.2547   worst 0.1652   lr 0.0063   p 137.97   eps 0.0189   mix 0.0661   time 46.97
+Epoch 620:  train loss 0.4061   train acc 0.2537   worst 0.1651   lr 0.0063   p 138.73   eps 0.0189   mix 0.0658   time 46.93
+Epoch 621:  train loss 0.4044   train acc 0.2537   worst 0.1655   lr 0.0063   p 139.49   eps 0.0189   mix 0.0654   time 46.96
+Epoch 622:  train loss 0.4024   train acc 0.2532   worst 0.1657   lr 0.0063   p 140.26   eps 0.0189   mix 0.0651   time 47.05
+Epoch 623:  train loss 0.4020   train acc 0.2539   worst 0.1659   lr 0.0062   p 141.03   eps 0.0189   mix 0.0648   time 46.96
+Epoch 624:  train loss 0.3992   train acc 0.2534   worst 0.1666   lr 0.0062   p 141.81   eps 0.0189   mix 0.0644   time 47.06
+Epoch 625:  train loss 0.3978   train acc 0.2530   worst 0.1663   lr 0.0062   p 142.59   eps 0.0189   mix 0.0641   time 47.05
+Epoch 626:  train loss 0.3977   train acc 0.2547   worst 0.1676   lr 0.0061   p 143.37   eps 0.0189   mix 0.0638   time 47.22
+Epoch 627:  train loss 0.3947   train acc 0.2526   worst 0.1665   lr 0.0061   p 144.16   eps 0.0189   mix 0.0634   time 47.06
+Epoch 628:  train loss 0.3933   train acc 0.2526   worst 0.1670   lr 0.0061   p 144.96   eps 0.0189   mix 0.0631   time 47.01
+Epoch 629:  train loss 0.3946   train acc 0.2542   worst 0.1666   lr 0.0061   p 145.75   eps 0.0189   mix 0.0628   time 47.06
+Epoch 630:  train loss 0.3919   train acc 0.2535   worst 0.1661   lr 0.0060   p 146.56   eps 0.0189   mix 0.0624   time 47.13
+Epoch 631:  train loss 0.3907   train acc 0.2545   worst 0.1684   lr 0.0060   p 147.36   eps 0.0189   mix 0.0621   time 47.12
+Epoch 632:  train loss 0.3902   train acc 0.2542   worst 0.1673   lr 0.0060   p 148.17   eps 0.0189   mix 0.0618   time 47.11
+Epoch 633:  train loss 0.3885   train acc 0.2542   worst 0.1680   lr 0.0059   p 148.99   eps 0.0189   mix 0.0615   time 47.03
+Epoch 634:  train loss 0.3884   train acc 0.2538   worst 0.1669   lr 0.0059   p 149.81   eps 0.0189   mix 0.0611   time 47.01
+Epoch 635:  train loss 0.3880   train acc 0.2544   worst 0.1666   lr 0.0059   p 150.63   eps 0.0189   mix 0.0608   time 47.02
+Epoch 636:  train loss 0.3866   train acc 0.2549   worst 0.1682   lr 0.0059   p 151.46   eps 0.0189   mix 0.0605   time 47.05
+Epoch 637:  train loss 0.3833   train acc 0.2535   worst 0.1681   lr 0.0058   p 152.29   eps 0.0189   mix 0.0602   time 46.99
+Epoch 638:  train loss 0.3819   train acc 0.2549   worst 0.1689   lr 0.0058   p 153.13   eps 0.0189   mix 0.0599   time 47.08
+Epoch 639:  train loss 0.3822   train acc 0.2545   worst 0.1683   lr 0.0058   p 153.97   eps 0.0189   mix 0.0596   time 46.89
+Epoch 640:  train loss 0.3808   train acc 0.2551   worst 0.1688   lr 0.0057   p 154.82   eps 0.0189   mix 0.0593   time 47.03
+Epoch 641:  train loss 0.3785   train acc 0.2542   worst 0.1681   lr 0.0057   p 155.67   eps 0.0189   mix 0.0589   time 47.00
+Epoch 642:  train loss 0.3773   train acc 0.2541   worst 0.1688   lr 0.0057   p 156.53   eps 0.0189   mix 0.0586   time 46.89
+Epoch 643:  train loss 0.3760   train acc 0.2537   worst 0.1686   lr 0.0057   p 157.39   eps 0.0189   mix 0.0583   time 46.85
+Epoch 644:  train loss 0.3765   train acc 0.2553   worst 0.1695   lr 0.0056   p 158.26   eps 0.0189   mix 0.0580   time 46.85
+Epoch 645:  train loss 0.3748   train acc 0.2549   worst 0.1696   lr 0.0056   p 159.13   eps 0.0189   mix 0.0577   time 46.85
+Epoch 646:  train loss 0.3728   train acc 0.2539   worst 0.1696   lr 0.0056   p 160.00   eps 0.0189   mix 0.0574   time 46.91
+Epoch 647:  train loss 0.3713   train acc 0.2549   worst 0.1704   lr 0.0055   p 160.88   eps 0.0189   mix 0.0571   time 46.98
+Epoch 648:  train loss 0.3697   train acc 0.2546   worst 0.1703   lr 0.0055   p 161.77   eps 0.0189   mix 0.0568   time 47.09
+Epoch 649:  train loss 0.3709   train acc 0.2562   worst 0.1704   lr 0.0055   p 162.66   eps 0.0189   mix 0.0565   time 47.01
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 649:  clean acc 0.2706   certified acc 0.1965   time 98.47
+Calculating metrics for SortNet on test set
+Epoch 649:  clean acc 0.2307   certified acc 0.1503   time 9.97
+Epoch 650:  train loss 0.3693   train acc 0.2561   worst 0.1711   lr 0.0055   p 163.55   eps 0.0189   mix 0.0562   time 47.04
+Epoch 651:  train loss 0.3688   train acc 0.2560   worst 0.1702   lr 0.0054   p 164.45   eps 0.0189   mix 0.0559   time 47.00
+Epoch 652:  train loss 0.3658   train acc 0.2543   worst 0.1698   lr 0.0054   p 165.36   eps 0.0189   mix 0.0556   time 47.08
+Epoch 653:  train loss 0.3659   train acc 0.2554   worst 0.1706   lr 0.0054   p 166.27   eps 0.0189   mix 0.0554   time 47.01
+Epoch 654:  train loss 0.3643   train acc 0.2555   worst 0.1700   lr 0.0053   p 167.18   eps 0.0189   mix 0.0551   time 46.92
+Epoch 655:  train loss 0.3646   train acc 0.2564   worst 0.1713   lr 0.0053   p 168.10   eps 0.0189   mix 0.0548   time 46.99
+Epoch 656:  train loss 0.3611   train acc 0.2546   worst 0.1713   lr 0.0053   p 169.03   eps 0.0189   mix 0.0545   time 46.91
+Epoch 657:  train loss 0.3597   train acc 0.2544   worst 0.1714   lr 0.0053   p 169.96   eps 0.0189   mix 0.0542   time 46.93
+Epoch 658:  train loss 0.3597   train acc 0.2560   worst 0.1720   lr 0.0052   p 170.89   eps 0.0189   mix 0.0539   time 46.90
+Epoch 659:  train loss 0.3592   train acc 0.2553   worst 0.1710   lr 0.0052   p 171.83   eps 0.0189   mix 0.0536   time 46.90
+Epoch 660:  train loss 0.3581   train acc 0.2562   worst 0.1717   lr 0.0052   p 172.78   eps 0.0189   mix 0.0534   time 46.99
+Epoch 661:  train loss 0.3556   train acc 0.2547   worst 0.1715   lr 0.0052   p 173.73   eps 0.0189   mix 0.0531   time 46.96
+Epoch 662:  train loss 0.3547   train acc 0.2553   worst 0.1714   lr 0.0051   p 174.68   eps 0.0189   mix 0.0528   time 46.91
+Epoch 663:  train loss 0.3548   train acc 0.2552   worst 0.1714   lr 0.0051   p 175.65   eps 0.0189   mix 0.0525   time 46.92
+Epoch 664:  train loss 0.3515   train acc 0.2551   worst 0.1725   lr 0.0051   p 176.61   eps 0.0189   mix 0.0523   time 47.01
+Epoch 665:  train loss 0.3526   train acc 0.2570   worst 0.1738   lr 0.0050   p 177.58   eps 0.0189   mix 0.0520   time 46.94
+Epoch 666:  train loss 0.3512   train acc 0.2561   worst 0.1727   lr 0.0050   p 178.56   eps 0.0189   mix 0.0517   time 46.97
+Epoch 667:  train loss 0.3496   train acc 0.2557   worst 0.1733   lr 0.0050   p 179.54   eps 0.0189   mix 0.0514   time 46.91
+Epoch 668:  train loss 0.3483   train acc 0.2562   worst 0.1739   lr 0.0050   p 180.53   eps 0.0189   mix 0.0512   time 46.87
+Epoch 669:  train loss 0.3475   train acc 0.2557   worst 0.1720   lr 0.0049   p 181.52   eps 0.0189   mix 0.0509   time 46.84
+Epoch 670:  train loss 0.3459   train acc 0.2559   worst 0.1736   lr 0.0049   p 182.52   eps 0.0189   mix 0.0506   time 47.02
+Epoch 671:  train loss 0.3482   train acc 0.2578   worst 0.1731   lr 0.0049   p 183.53   eps 0.0189   mix 0.0504   time 46.84
+Epoch 672:  train loss 0.3432   train acc 0.2558   worst 0.1734   lr 0.0049   p 184.54   eps 0.0189   mix 0.0501   time 46.95
+Epoch 673:  train loss 0.3424   train acc 0.2553   worst 0.1734   lr 0.0048   p 185.55   eps 0.0189   mix 0.0499   time 46.87
+Epoch 674:  train loss 0.3422   train acc 0.2564   worst 0.1743   lr 0.0048   p 186.57   eps 0.0189   mix 0.0496   time 46.96
+Epoch 675:  train loss 0.3418   train acc 0.2564   worst 0.1744   lr 0.0048   p 187.60   eps 0.0189   mix 0.0493   time 46.92
+Epoch 676:  train loss 0.3387   train acc 0.2542   worst 0.1737   lr 0.0047   p 188.63   eps 0.0189   mix 0.0491   time 46.89
+Epoch 677:  train loss 0.3406   train acc 0.2573   worst 0.1749   lr 0.0047   p 189.67   eps 0.0189   mix 0.0488   time 47.01
+Epoch 678:  train loss 0.3387   train acc 0.2567   worst 0.1747   lr 0.0047   p 190.71   eps 0.0189   mix 0.0486   time 46.91
+Epoch 679:  train loss 0.3380   train acc 0.2565   worst 0.1743   lr 0.0047   p 191.76   eps 0.0189   mix 0.0483   time 47.00
+Epoch 680:  train loss 0.3363   train acc 0.2574   worst 0.1757   lr 0.0046   p 192.82   eps 0.0189   mix 0.0481   time 47.02
+Epoch 681:  train loss 0.3368   train acc 0.2571   worst 0.1745   lr 0.0046   p 193.88   eps 0.0189   mix 0.0478   time 46.92
+Epoch 682:  train loss 0.3352   train acc 0.2564   worst 0.1744   lr 0.0046   p 194.94   eps 0.0189   mix 0.0476   time 46.92
+Epoch 683:  train loss 0.3339   train acc 0.2569   worst 0.1746   lr 0.0046   p 196.02   eps 0.0189   mix 0.0473   time 46.83
+Epoch 684:  train loss 0.3335   train acc 0.2566   worst 0.1743   lr 0.0045   p 197.10   eps 0.0189   mix 0.0471   time 46.88
+Epoch 685:  train loss 0.3313   train acc 0.2571   worst 0.1762   lr 0.0045   p 198.18   eps 0.0189   mix 0.0468   time 47.01
+Epoch 686:  train loss 0.3326   train acc 0.2582   worst 0.1748   lr 0.0045   p 199.27   eps 0.0189   mix 0.0466   time 46.83
+Epoch 687:  train loss 0.3322   train acc 0.2577   worst 0.1742   lr 0.0045   p 200.37   eps 0.0189   mix 0.0463   time 46.90
+Epoch 688:  train loss 0.3286   train acc 0.2569   worst 0.1762   lr 0.0044   p 201.47   eps 0.0189   mix 0.0461   time 46.87
+Epoch 689:  train loss 0.3278   train acc 0.2573   worst 0.1767   lr 0.0044   p 202.58   eps 0.0189   mix 0.0459   time 46.92
+Epoch 690:  train loss 0.3256   train acc 0.2567   worst 0.1766   lr 0.0044   p 203.69   eps 0.0189   mix 0.0456   time 46.91
+Epoch 691:  train loss 0.3258   train acc 0.2572   worst 0.1764   lr 0.0044   p 204.81   eps 0.0189   mix 0.0454   time 46.95
+Epoch 692:  train loss 0.3244   train acc 0.2575   worst 0.1776   lr 0.0043   p 205.94   eps 0.0189   mix 0.0451   time 46.92
+Epoch 693:  train loss 0.3246   train acc 0.2582   worst 0.1777   lr 0.0043   p 207.07   eps 0.0189   mix 0.0449   time 47.03
+Epoch 694:  train loss 0.3217   train acc 0.2564   worst 0.1766   lr 0.0043   p 208.21   eps 0.0189   mix 0.0447   time 46.93
+Epoch 695:  train loss 0.3215   train acc 0.2572   worst 0.1767   lr 0.0042   p 209.36   eps 0.0189   mix 0.0444   time 46.82
+Epoch 696:  train loss 0.3211   train acc 0.2569   worst 0.1767   lr 0.0042   p 210.51   eps 0.0189   mix 0.0442   time 46.89
+Epoch 697:  train loss 0.3208   train acc 0.2575   worst 0.1766   lr 0.0042   p 211.67   eps 0.0189   mix 0.0440   time 47.01
+Epoch 698:  train loss 0.3187   train acc 0.2576   worst 0.1778   lr 0.0042   p 212.83   eps 0.0189   mix 0.0437   time 46.90
+Epoch 699:  train loss 0.3203   train acc 0.2584   worst 0.1766   lr 0.0041   p 214.00   eps 0.0189   mix 0.0435   time 46.99
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 699:  clean acc 0.2747   certified acc 0.2059   time 98.58
+Calculating metrics for SortNet on test set
+Epoch 699:  clean acc 0.2359   certified acc 0.1558   time 9.90
+Epoch 700:  train loss 0.3160   train acc 0.2564   worst 0.1774   lr 0.0041   p 215.18   eps 0.0189   mix 0.0433   time 47.14
+Epoch 701:  train loss 0.3166   train acc 0.2574   worst 0.1775   lr 0.0041   p 216.36   eps 0.0189   mix 0.0431   time 47.04
+Epoch 702:  train loss 0.3138   train acc 0.2562   worst 0.1777   lr 0.0041   p 217.55   eps 0.0189   mix 0.0428   time 46.87
+Epoch 703:  train loss 0.3155   train acc 0.2575   worst 0.1776   lr 0.0040   p 218.75   eps 0.0189   mix 0.0426   time 46.88
+Epoch 704:  train loss 0.3139   train acc 0.2581   worst 0.1789   lr 0.0040   p 219.95   eps 0.0189   mix 0.0424   time 46.99
+Epoch 705:  train loss 0.3123   train acc 0.2582   worst 0.1788   lr 0.0040   p 221.16   eps 0.0189   mix 0.0422   time 46.94
+Epoch 706:  train loss 0.3129   train acc 0.2581   worst 0.1786   lr 0.0040   p 222.38   eps 0.0189   mix 0.0419   time 46.92
+Epoch 707:  train loss 0.3114   train acc 0.2585   worst 0.1788   lr 0.0039   p 223.60   eps 0.0189   mix 0.0417   time 46.95
+Epoch 708:  train loss 0.3102   train acc 0.2575   worst 0.1781   lr 0.0039   p 224.84   eps 0.0189   mix 0.0415   time 47.07
+Epoch 709:  train loss 0.3103   train acc 0.2597   worst 0.1807   lr 0.0039   p 226.07   eps 0.0189   mix 0.0413   time 46.90
+Epoch 710:  train loss 0.3068   train acc 0.2579   worst 0.1803   lr 0.0039   p 227.32   eps 0.0189   mix 0.0411   time 46.91
+Epoch 711:  train loss 0.3073   train acc 0.2583   worst 0.1803   lr 0.0038   p 228.57   eps 0.0189   mix 0.0409   time 46.95
+Epoch 712:  train loss 0.3068   train acc 0.2582   worst 0.1794   lr 0.0038   p 229.82   eps 0.0189   mix 0.0407   time 47.05
+Epoch 713:  train loss 0.3060   train acc 0.2589   worst 0.1801   lr 0.0038   p 231.09   eps 0.0189   mix 0.0404   time 47.01
+Epoch 714:  train loss 0.3069   train acc 0.2591   worst 0.1787   lr 0.0038   p 232.36   eps 0.0189   mix 0.0402   time 46.90
+Epoch 715:  train loss 0.3043   train acc 0.2583   worst 0.1795   lr 0.0037   p 233.64   eps 0.0189   mix 0.0400   time 46.82
+Epoch 716:  train loss 0.3057   train acc 0.2601   worst 0.1795   lr 0.0037   p 234.92   eps 0.0189   mix 0.0398   time 46.82
+Epoch 717:  train loss 0.3041   train acc 0.2598   worst 0.1811   lr 0.0037   p 236.22   eps 0.0189   mix 0.0396   time 46.87
+Epoch 718:  train loss 0.3022   train acc 0.2589   worst 0.1804   lr 0.0037   p 237.52   eps 0.0189   mix 0.0394   time 46.75
+Epoch 719:  train loss 0.3016   train acc 0.2590   worst 0.1806   lr 0.0036   p 238.82   eps 0.0189   mix 0.0392   time 46.89
+Epoch 720:  train loss 0.3005   train acc 0.2588   worst 0.1805   lr 0.0036   p 240.14   eps 0.0189   mix 0.0390   time 46.94
+Epoch 721:  train loss 0.3002   train acc 0.2596   worst 0.1817   lr 0.0036   p 241.46   eps 0.0189   mix 0.0388   time 46.81
+Epoch 722:  train loss 0.2998   train acc 0.2597   worst 0.1815   lr 0.0036   p 242.79   eps 0.0189   mix 0.0386   time 46.97
+Epoch 723:  train loss 0.2980   train acc 0.2590   worst 0.1807   lr 0.0036   p 244.12   eps 0.0189   mix 0.0384   time 47.06
+Epoch 724:  train loss 0.2971   train acc 0.2596   worst 0.1822   lr 0.0035   p 245.47   eps 0.0189   mix 0.0382   time 47.04
+Epoch 725:  train loss 0.2976   train acc 0.2601   worst 0.1817   lr 0.0035   p 246.82   eps 0.0189   mix 0.0380   time 46.90
+Epoch 726:  train loss 0.2968   train acc 0.2593   worst 0.1818   lr 0.0035   p 248.17   eps 0.0189   mix 0.0378   time 46.83
+Epoch 727:  train loss 0.2935   train acc 0.2590   worst 0.1817   lr 0.0035   p 249.54   eps 0.0189   mix 0.0376   time 47.05
+Epoch 728:  train loss 0.2958   train acc 0.2606   worst 0.1819   lr 0.0034   p 250.91   eps 0.0189   mix 0.0374   time 46.99
+Epoch 729:  train loss 0.2941   train acc 0.2602   worst 0.1819   lr 0.0034   p 252.29   eps 0.0189   mix 0.0372   time 46.98
+Epoch 730:  train loss 0.2938   train acc 0.2599   worst 0.1819   lr 0.0034   p 253.68   eps 0.0189   mix 0.0370   time 46.96
+Epoch 731:  train loss 0.2917   train acc 0.2597   worst 0.1828   lr 0.0034   p 255.08   eps 0.0189   mix 0.0368   time 46.85
+Epoch 732:  train loss 0.2916   train acc 0.2607   worst 0.1829   lr 0.0033   p 256.48   eps 0.0189   mix 0.0366   time 47.12
+Epoch 733:  train loss 0.2917   train acc 0.2610   worst 0.1835   lr 0.0033   p 257.89   eps 0.0189   mix 0.0364   time 46.93
+Epoch 734:  train loss 0.2899   train acc 0.2607   worst 0.1833   lr 0.0033   p 259.31   eps 0.0189   mix 0.0362   time 47.00
+Epoch 735:  train loss 0.2897   train acc 0.2616   worst 0.1841   lr 0.0033   p 260.74   eps 0.0189   mix 0.0360   time 47.00
+Epoch 736:  train loss 0.2900   train acc 0.2617   worst 0.1839   lr 0.0032   p 262.17   eps 0.0189   mix 0.0359   time 46.95
+Epoch 737:  train loss 0.2885   train acc 0.2613   worst 0.1835   lr 0.0032   p 263.61   eps 0.0189   mix 0.0357   time 46.97
+Epoch 738:  train loss 0.2858   train acc 0.2598   worst 0.1839   lr 0.0032   p 265.06   eps 0.0189   mix 0.0355   time 46.91
+Epoch 739:  train loss 0.2858   train acc 0.2599   worst 0.1834   lr 0.0032   p 266.52   eps 0.0189   mix 0.0353   time 46.96
+Epoch 740:  train loss 0.2846   train acc 0.2601   worst 0.1846   lr 0.0032   p 267.99   eps 0.0189   mix 0.0351   time 46.87
+Epoch 741:  train loss 0.2846   train acc 0.2605   worst 0.1846   lr 0.0031   p 269.46   eps 0.0189   mix 0.0349   time 46.85
+Epoch 742:  train loss 0.2832   train acc 0.2602   worst 0.1847   lr 0.0031   p 270.95   eps 0.0189   mix 0.0347   time 46.95
+Epoch 743:  train loss 0.2826   train acc 0.2605   worst 0.1849   lr 0.0031   p 272.44   eps 0.0189   mix 0.0346   time 46.88
+Epoch 744:  train loss 0.2829   train acc 0.2606   worst 0.1836   lr 0.0031   p 273.93   eps 0.0189   mix 0.0344   time 46.81
+Epoch 745:  train loss 0.2816   train acc 0.2608   worst 0.1845   lr 0.0030   p 275.44   eps 0.0189   mix 0.0342   time 46.93
+Epoch 746:  train loss 0.2814   train acc 0.2616   worst 0.1851   lr 0.0030   p 276.96   eps 0.0189   mix 0.0340   time 47.02
+Epoch 747:  train loss 0.2820   train acc 0.2625   worst 0.1852   lr 0.0030   p 278.48   eps 0.0189   mix 0.0338   time 46.95
+Epoch 748:  train loss 0.2796   train acc 0.2615   worst 0.1858   lr 0.0030   p 280.01   eps 0.0189   mix 0.0337   time 46.85
+Epoch 749:  train loss 0.2806   train acc 0.2631   worst 0.1856   lr 0.0030   p 281.55   eps 0.0189   mix 0.0335   time 46.85
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 749:  clean acc 0.2756   certified acc 0.2126   time 98.42
+Calculating metrics for SortNet on test set
+Epoch 749:  clean acc 0.2358   certified acc 0.1606   time 9.95
+Epoch 750:  train loss 0.2778   train acc 0.2606   worst 0.1856   lr 0.0029   p 283.10   eps 0.0189   mix 0.0333   time 46.97
+Epoch 751:  train loss 0.2774   train acc 0.2612   worst 0.1859   lr 0.0029   p 284.66   eps 0.0189   mix 0.0331   time 47.05
+Epoch 752:  train loss 0.2784   train acc 0.2626   worst 0.1856   lr 0.0029   p 286.23   eps 0.0189   mix 0.0330   time 46.86
+Epoch 753:  train loss 0.2772   train acc 0.2619   worst 0.1858   lr 0.0029   p 287.80   eps 0.0189   mix 0.0328   time 46.83
+Epoch 754:  train loss 0.2755   train acc 0.2619   worst 0.1855   lr 0.0028   p 289.38   eps 0.0189   mix 0.0326   time 46.86
+Epoch 755:  train loss 0.2753   train acc 0.2619   worst 0.1860   lr 0.0028   p 290.98   eps 0.0189   mix 0.0325   time 46.83
+Epoch 756:  train loss 0.2731   train acc 0.2604   worst 0.1860   lr 0.0028   p 292.58   eps 0.0189   mix 0.0323   time 46.75
+Epoch 757:  train loss 0.2737   train acc 0.2618   worst 0.1862   lr 0.0028   p 294.19   eps 0.0189   mix 0.0321   time 46.85
+Epoch 758:  train loss 0.2739   train acc 0.2632   worst 0.1868   lr 0.0028   p 295.81   eps 0.0189   mix 0.0320   time 46.75
+Epoch 759:  train loss 0.2735   train acc 0.2634   worst 0.1873   lr 0.0027   p 297.43   eps 0.0189   mix 0.0318   time 46.75
+Epoch 760:  train loss 0.2720   train acc 0.2632   worst 0.1879   lr 0.0027   p 299.07   eps 0.0189   mix 0.0316   time 46.88
+Epoch 761:  train loss 0.2706   train acc 0.2627   worst 0.1877   lr 0.0027   p 300.72   eps 0.0189   mix 0.0315   time 46.96
+Epoch 762:  train loss 0.2687   train acc 0.2612   worst 0.1878   lr 0.0027   p 302.37   eps 0.0189   mix 0.0313   time 46.87
+Epoch 763:  train loss 0.2702   train acc 0.2628   worst 0.1879   lr 0.0026   p 304.03   eps 0.0189   mix 0.0311   time 47.05
+Epoch 764:  train loss 0.2683   train acc 0.2615   worst 0.1872   lr 0.0026   p 305.71   eps 0.0189   mix 0.0310   time 46.91
+Epoch 765:  train loss 0.2686   train acc 0.2632   worst 0.1876   lr 0.0026   p 307.39   eps 0.0189   mix 0.0308   time 46.93
+Epoch 766:  train loss 0.2676   train acc 0.2630   worst 0.1890   lr 0.0026   p 309.08   eps 0.0189   mix 0.0306   time 47.01
+Epoch 767:  train loss 0.2660   train acc 0.2615   worst 0.1883   lr 0.0026   p 310.78   eps 0.0189   mix 0.0305   time 46.89
+Epoch 768:  train loss 0.2663   train acc 0.2628   worst 0.1883   lr 0.0025   p 312.49   eps 0.0189   mix 0.0303   time 46.96
+Epoch 769:  train loss 0.2666   train acc 0.2638   worst 0.1892   lr 0.0025   p 314.21   eps 0.0189   mix 0.0302   time 46.97
+Epoch 770:  train loss 0.2661   train acc 0.2632   worst 0.1876   lr 0.0025   p 315.94   eps 0.0189   mix 0.0300   time 46.87
+Epoch 771:  train loss 0.2643   train acc 0.2630   worst 0.1892   lr 0.0025   p 317.68   eps 0.0189   mix 0.0299   time 46.82
+Epoch 772:  train loss 0.2632   train acc 0.2624   worst 0.1885   lr 0.0025   p 319.42   eps 0.0189   mix 0.0297   time 46.92
+Epoch 773:  train loss 0.2651   train acc 0.2648   worst 0.1896   lr 0.0024   p 321.18   eps 0.0189   mix 0.0295   time 46.86
+Epoch 774:  train loss 0.2615   train acc 0.2624   worst 0.1898   lr 0.0024   p 322.95   eps 0.0189   mix 0.0294   time 46.88
+Epoch 775:  train loss 0.2613   train acc 0.2625   worst 0.1891   lr 0.0024   p 324.72   eps 0.0189   mix 0.0292   time 47.08
+Epoch 776:  train loss 0.2616   train acc 0.2632   worst 0.1895   lr 0.0024   p 326.51   eps 0.0189   mix 0.0291   time 46.96
+Epoch 777:  train loss 0.2612   train acc 0.2636   worst 0.1895   lr 0.0024   p 328.31   eps 0.0189   mix 0.0289   time 46.97
+Epoch 778:  train loss 0.2605   train acc 0.2640   worst 0.1898   lr 0.0023   p 330.11   eps 0.0189   mix 0.0288   time 46.87
+Epoch 779:  train loss 0.2598   train acc 0.2644   worst 0.1910   lr 0.0023   p 331.93   eps 0.0189   mix 0.0286   time 46.75
+Epoch 780:  train loss 0.2600   train acc 0.2650   worst 0.1909   lr 0.0023   p 333.76   eps 0.0189   mix 0.0285   time 46.91
+Epoch 781:  train loss 0.2578   train acc 0.2633   worst 0.1902   lr 0.0023   p 335.59   eps 0.0189   mix 0.0283   time 46.88
+Epoch 782:  train loss 0.2580   train acc 0.2642   worst 0.1904   lr 0.0023   p 337.44   eps 0.0189   mix 0.0282   time 46.96
+Epoch 783:  train loss 0.2578   train acc 0.2638   worst 0.1898   lr 0.0022   p 339.30   eps 0.0189   mix 0.0280   time 46.87
+Epoch 784:  train loss 0.2587   train acc 0.2650   worst 0.1903   lr 0.0022   p 341.16   eps 0.0189   mix 0.0279   time 46.99
+Epoch 785:  train loss 0.2560   train acc 0.2642   worst 0.1916   lr 0.0022   p 343.04   eps 0.0189   mix 0.0277   time 46.87
+Epoch 786:  train loss 0.2557   train acc 0.2646   worst 0.1907   lr 0.0022   p 344.93   eps 0.0189   mix 0.0276   time 46.92
+Epoch 787:  train loss 0.2542   train acc 0.2638   worst 0.1912   lr 0.0022   p 346.82   eps 0.0189   mix 0.0275   time 46.89
+Epoch 788:  train loss 0.2536   train acc 0.2641   worst 0.1923   lr 0.0021   p 348.73   eps 0.0189   mix 0.0273   time 47.01
+Epoch 789:  train loss 0.2531   train acc 0.2639   worst 0.1911   lr 0.0021   p 350.65   eps 0.0189   mix 0.0272   time 46.82
+Epoch 790:  train loss 0.2532   train acc 0.2645   worst 0.1909   lr 0.0021   p 352.58   eps 0.0189   mix 0.0270   time 46.89
+Epoch 791:  train loss 0.2505   train acc 0.2631   worst 0.1921   lr 0.0021   p 354.52   eps 0.0189   mix 0.0269   time 46.89
+Epoch 792:  train loss 0.2510   train acc 0.2640   worst 0.1920   lr 0.0021   p 356.47   eps 0.0189   mix 0.0267   time 46.82
+Epoch 793:  train loss 0.2510   train acc 0.2642   worst 0.1920   lr 0.0020   p 358.43   eps 0.0189   mix 0.0266   time 46.93
+Epoch 794:  train loss 0.2508   train acc 0.2648   worst 0.1924   lr 0.0020   p 360.40   eps 0.0189   mix 0.0265   time 47.10
+Epoch 795:  train loss 0.2493   train acc 0.2639   worst 0.1918   lr 0.0020   p 362.39   eps 0.0189   mix 0.0263   time 47.00
+Epoch 796:  train loss 0.2477   train acc 0.2637   worst 0.1921   lr 0.0020   p 364.38   eps 0.0189   mix 0.0262   time 46.94
+Epoch 797:  train loss 0.2491   train acc 0.2657   worst 0.1944   lr 0.0020   p 366.39   eps 0.0189   mix 0.0261   time 46.92
+Epoch 798:  train loss 0.2461   train acc 0.2641   worst 0.1935   lr 0.0019   p 368.40   eps 0.0189   mix 0.0259   time 47.01
+Epoch 799:  train loss 0.2477   train acc 0.2645   worst 0.1924   lr 0.0019   p 370.43   eps 0.0189   mix 0.0258   time 46.89
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 799:  clean acc 0.2812   certified acc 0.2191   time 98.44
+Calculating metrics for SortNet on test set
+Epoch 799:  clean acc 0.2362   certified acc 0.1658   time 9.89
+Epoch 800:  train loss 0.2465   train acc 0.2640   worst 0.1920   lr 0.0019   p 372.47   eps 0.0189   mix 0.0257   time 46.83
+Epoch 801:  train loss 0.2467   train acc 0.2657   worst 0.1937   lr 0.0019   p 374.52   eps 0.0189   mix 0.0255   time 46.87
+Epoch 802:  train loss 0.2470   train acc 0.2661   worst 0.1944   lr 0.0019   p 376.58   eps 0.0189   mix 0.0254   time 46.88
+Epoch 803:  train loss 0.2445   train acc 0.2642   worst 0.1938   lr 0.0019   p 378.65   eps 0.0189   mix 0.0253   time 46.88
+Epoch 804:  train loss 0.2456   train acc 0.2658   worst 0.1933   lr 0.0018   p 380.73   eps 0.0189   mix 0.0251   time 46.97
+Epoch 805:  train loss 0.2447   train acc 0.2656   worst 0.1932   lr 0.0018   p 382.83   eps 0.0189   mix 0.0250   time 46.90
+Epoch 806:  train loss 0.2450   train acc 0.2663   worst 0.1943   lr 0.0018   p 384.93   eps 0.0189   mix 0.0249   time 46.89
+Epoch 807:  train loss 0.2431   train acc 0.2645   worst 0.1939   lr 0.0018   p 387.05   eps 0.0189   mix 0.0247   time 46.91
+Epoch 808:  train loss 0.2425   train acc 0.2654   worst 0.1938   lr 0.0018   p 389.18   eps 0.0189   mix 0.0246   time 46.85
+Epoch 809:  train loss 0.2425   train acc 0.2661   worst 0.1948   lr 0.0017   p 391.32   eps 0.0189   mix 0.0245   time 46.88
+Epoch 810:  train loss 0.2413   train acc 0.2652   worst 0.1941   lr 0.0017   p 393.47   eps 0.0189   mix 0.0243   time 46.90
+Epoch 811:  train loss 0.2410   train acc 0.2655   worst 0.1950   lr 0.0017   p 395.64   eps 0.0189   mix 0.0242   time 46.88
+Epoch 812:  train loss 0.2405   train acc 0.2650   worst 0.1938   lr 0.0017   p 397.81   eps 0.0189   mix 0.0241   time 46.99
+Epoch 813:  train loss 0.2404   train acc 0.2659   worst 0.1950   lr 0.0017   p 400.00   eps 0.0189   mix 0.0240   time 47.01
+Epoch 814:  train loss 0.2397   train acc 0.2664   worst 0.1948   lr 0.0017   p 402.20   eps 0.0189   mix 0.0238   time 46.93
+Epoch 815:  train loss 0.2385   train acc 0.2651   worst 0.1948   lr 0.0016   p 404.42   eps 0.0189   mix 0.0237   time 46.90
+Epoch 816:  train loss 0.2389   train acc 0.2665   worst 0.1954   lr 0.0016   p 406.64   eps 0.0189   mix 0.0236   time 46.88
+Epoch 817:  train loss 0.2381   train acc 0.2660   worst 0.1957   lr 0.0016   p 408.88   eps 0.0189   mix 0.0235   time 46.84
+Epoch 818:  train loss 0.2381   train acc 0.2666   worst 0.1954   lr 0.0016   p 411.13   eps 0.0189   mix 0.0233   time 46.95
+Epoch 819:  train loss 0.2368   train acc 0.2663   worst 0.1956   lr 0.0016   p 413.39   eps 0.0189   mix 0.0232   time 46.87
+Epoch 820:  train loss 0.2382   train acc 0.2667   worst 0.1952   lr 0.0016   p 415.67   eps 0.0189   mix 0.0231   time 46.88
+Epoch 821:  train loss 0.2368   train acc 0.2665   worst 0.1957   lr 0.0015   p 417.95   eps 0.0189   mix 0.0230   time 46.89
+Epoch 822:  train loss 0.2368   train acc 0.2673   worst 0.1961   lr 0.0015   p 420.25   eps 0.0189   mix 0.0229   time 46.86
+Epoch 823:  train loss 0.2360   train acc 0.2665   worst 0.1960   lr 0.0015   p 422.56   eps 0.0189   mix 0.0227   time 46.96
+Epoch 824:  train loss 0.2332   train acc 0.2650   worst 0.1956   lr 0.0015   p 424.89   eps 0.0189   mix 0.0226   time 47.03
+Epoch 825:  train loss 0.2358   train acc 0.2679   worst 0.1970   lr 0.0015   p 427.23   eps 0.0189   mix 0.0225   time 46.88
+Epoch 826:  train loss 0.2357   train acc 0.2681   worst 0.1964   lr 0.0015   p 429.58   eps 0.0189   mix 0.0224   time 46.92
+Epoch 827:  train loss 0.2331   train acc 0.2669   worst 0.1969   lr 0.0014   p 431.94   eps 0.0189   mix 0.0223   time 46.88
+Epoch 828:  train loss 0.2327   train acc 0.2667   worst 0.1964   lr 0.0014   p 434.32   eps 0.0189   mix 0.0222   time 46.96
+Epoch 829:  train loss 0.2331   train acc 0.2669   worst 0.1962   lr 0.0014   p 436.71   eps 0.0189   mix 0.0220   time 46.83
+Epoch 830:  train loss 0.2321   train acc 0.2668   worst 0.1971   lr 0.0014   p 439.11   eps 0.0189   mix 0.0219   time 46.87
+Epoch 831:  train loss 0.2321   train acc 0.2673   worst 0.1973   lr 0.0014   p 441.52   eps 0.0189   mix 0.0218   time 46.78
+Epoch 832:  train loss 0.2321   train acc 0.2682   worst 0.1983   lr 0.0014   p 443.95   eps 0.0189   mix 0.0217   time 46.98
+Epoch 833:  train loss 0.2310   train acc 0.2680   worst 0.1985   lr 0.0013   p 446.40   eps 0.0189   mix 0.0216   time 46.94
+Epoch 834:  train loss 0.2314   train acc 0.2684   worst 0.1984   lr 0.0013   p 448.85   eps 0.0189   mix 0.0215   time 46.85
+Epoch 835:  train loss 0.2290   train acc 0.2664   worst 0.1965   lr 0.0013   p 451.32   eps 0.0189   mix 0.0214   time 46.90
+Epoch 836:  train loss 0.2299   train acc 0.2677   worst 0.1977   lr 0.0013   p 453.80   eps 0.0189   mix 0.0212   time 46.99
+Epoch 837:  train loss 0.2280   train acc 0.2667   worst 0.1977   lr 0.0013   p 456.30   eps 0.0189   mix 0.0211   time 46.94
+Epoch 838:  train loss 0.2285   train acc 0.2672   worst 0.1975   lr 0.0013   p 458.81   eps 0.0189   mix 0.0210   time 46.91
+Epoch 839:  train loss 0.2273   train acc 0.2672   worst 0.1991   lr 0.0013   p 461.34   eps 0.0189   mix 0.0209   time 46.84
+Epoch 840:  train loss 0.2274   train acc 0.2677   worst 0.1986   lr 0.0012   p 463.87   eps 0.0189   mix 0.0208   time 47.06
+Epoch 841:  train loss 0.2275   train acc 0.2683   worst 0.1992   lr 0.0012   p 466.43   eps 0.0189   mix 0.0207   time 46.86
+Epoch 842:  train loss 0.2274   train acc 0.2683   worst 0.1984   lr 0.0012   p 468.99   eps 0.0189   mix 0.0206   time 46.77
+Epoch 843:  train loss 0.2277   train acc 0.2689   worst 0.1993   lr 0.0012   p 471.57   eps 0.0189   mix 0.0205   time 46.88
+Epoch 844:  train loss 0.2250   train acc 0.2675   worst 0.1992   lr 0.0012   p 474.17   eps 0.0189   mix 0.0204   time 46.89
+Epoch 845:  train loss 0.2255   train acc 0.2676   worst 0.1993   lr 0.0012   p 476.78   eps 0.0189   mix 0.0203   time 46.95
+Epoch 846:  train loss 0.2259   train acc 0.2687   worst 0.1996   lr 0.0011   p 479.40   eps 0.0189   mix 0.0202   time 46.86
+Epoch 847:  train loss 0.2241   train acc 0.2679   worst 0.2001   lr 0.0011   p 482.04   eps 0.0189   mix 0.0201   time 46.85
+Epoch 848:  train loss 0.2250   train acc 0.2678   worst 0.1985   lr 0.0011   p 484.69   eps 0.0189   mix 0.0200   time 46.89
+Epoch 849:  train loss 0.2249   train acc 0.2685   worst 0.1987   lr 0.0011   p 487.36   eps 0.0189   mix 0.0198   time 46.76
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 849:  clean acc 0.2818   certified acc 0.2245   time 98.62
+Calculating metrics for SortNet on test set
+Epoch 849:  clean acc 0.2357   certified acc 0.1684   time 9.94
+Epoch 850:  train loss 0.2238   train acc 0.2686   worst 0.1984   lr 0.0011   p 490.04   eps 0.0189   mix 0.0197   time 46.92
+Epoch 851:  train loss 0.2238   train acc 0.2690   worst 0.1996   lr 0.0011   p 492.73   eps 0.0189   mix 0.0196   time 46.86
+Epoch 852:  train loss 0.2221   train acc 0.2682   worst 0.2004   lr 0.0011   p 495.44   eps 0.0189   mix 0.0195   time 46.87
+Epoch 853:  train loss 0.2218   train acc 0.2685   worst 0.2000   lr 0.0010   p 498.17   eps 0.0189   mix 0.0194   time 46.96
+Epoch 854:  train loss 0.2214   train acc 0.2685   worst 0.2001   lr 0.0010   p 500.91   eps 0.0189   mix 0.0193   time 46.91
+Epoch 855:  train loss 0.2227   train acc 0.2694   worst 0.1997   lr 0.0010   p 503.67   eps 0.0189   mix 0.0192   time 46.86
+Epoch 856:  train loss 0.2211   train acc 0.2688   worst 0.1993   lr 0.0010   p 506.44   eps 0.0189   mix 0.0191   time 46.98
+Epoch 857:  train loss 0.2210   train acc 0.2684   worst 0.1995   lr 0.0010   p 509.22   eps 0.0189   mix 0.0190   time 46.89
+Epoch 858:  train loss 0.2200   train acc 0.2689   worst 0.2009   lr 0.0010   p 512.03   eps 0.0189   mix 0.0189   time 46.82
+Epoch 859:  train loss 0.2192   train acc 0.2682   worst 0.1997   lr 0.0010   p 514.84   eps 0.0189   mix 0.0188   time 46.91
+Epoch 860:  train loss 0.2202   train acc 0.2690   worst 0.2000   lr 0.0010   p 517.68   eps 0.0189   mix 0.0187   time 46.98
+Epoch 861:  train loss 0.2184   train acc 0.2686   worst 0.2005   lr 0.0009   p 520.52   eps 0.0189   mix 0.0186   time 47.03
+Epoch 862:  train loss 0.2194   train acc 0.2696   worst 0.2009   lr 0.0009   p 523.39   eps 0.0189   mix 0.0185   time 46.91
+Epoch 863:  train loss 0.2186   train acc 0.2687   worst 0.1993   lr 0.0009   p 526.27   eps 0.0189   mix 0.0184   time 47.10
+Epoch 864:  train loss 0.2170   train acc 0.2685   worst 0.2005   lr 0.0009   p 529.16   eps 0.0189   mix 0.0184   time 47.07
+Epoch 865:  train loss 0.2178   train acc 0.2696   worst 0.2020   lr 0.0009   p 532.07   eps 0.0189   mix 0.0183   time 47.06
+Epoch 866:  train loss 0.2156   train acc 0.2684   worst 0.2017   lr 0.0009   p 535.00   eps 0.0189   mix 0.0182   time 46.93
+Epoch 867:  train loss 0.2163   train acc 0.2688   worst 0.2007   lr 0.0009   p 537.94   eps 0.0189   mix 0.0181   time 46.99
+Epoch 868:  train loss 0.2167   train acc 0.2698   worst 0.2016   lr 0.0008   p 540.90   eps 0.0189   mix 0.0180   time 46.96
+Epoch 869:  train loss 0.2149   train acc 0.2692   worst 0.2025   lr 0.0008   p 543.88   eps 0.0189   mix 0.0179   time 47.02
+Epoch 870:  train loss 0.2156   train acc 0.2695   worst 0.2014   lr 0.0008   p 546.87   eps 0.0189   mix 0.0178   time 47.10
+Epoch 871:  train loss 0.2147   train acc 0.2685   worst 0.2008   lr 0.0008   p 549.88   eps 0.0189   mix 0.0177   time 46.96
+Epoch 872:  train loss 0.2145   train acc 0.2696   worst 0.2016   lr 0.0008   p 552.91   eps 0.0189   mix 0.0176   time 46.94
+Epoch 873:  train loss 0.2130   train acc 0.2684   worst 0.2015   lr 0.0008   p 555.95   eps 0.0189   mix 0.0175   time 46.98
+Epoch 874:  train loss 0.2138   train acc 0.2688   worst 0.2011   lr 0.0008   p 559.01   eps 0.0189   mix 0.0174   time 47.06
+Epoch 875:  train loss 0.2140   train acc 0.2702   worst 0.2020   lr 0.0008   p 562.08   eps 0.0189   mix 0.0173   time 46.92
+Epoch 876:  train loss 0.2134   train acc 0.2690   worst 0.2016   lr 0.0007   p 565.18   eps 0.0189   mix 0.0172   time 46.76
+Epoch 877:  train loss 0.2133   train acc 0.2696   worst 0.2019   lr 0.0007   p 568.29   eps 0.0189   mix 0.0171   time 46.90
+Epoch 878:  train loss 0.2121   train acc 0.2695   worst 0.2022   lr 0.0007   p 571.41   eps 0.0189   mix 0.0171   time 46.92
+Epoch 879:  train loss 0.2120   train acc 0.2699   worst 0.2031   lr 0.0007   p 574.56   eps 0.0189   mix 0.0170   time 46.79
+Epoch 880:  train loss 0.2120   train acc 0.2703   worst 0.2032   lr 0.0007   p 577.72   eps 0.0189   mix 0.0169   time 46.83
+Epoch 881:  train loss 0.2102   train acc 0.2696   worst 0.2033   lr 0.0007   p 580.89   eps 0.0189   mix 0.0168   time 46.99
+Epoch 882:  train loss 0.2112   train acc 0.2697   worst 0.2016   lr 0.0007   p 584.09   eps 0.0189   mix 0.0167   time 46.89
+Epoch 883:  train loss 0.2092   train acc 0.2692   worst 0.2026   lr 0.0007   p 587.30   eps 0.0189   mix 0.0166   time 46.92
+Epoch 884:  train loss 0.2091   train acc 0.2698   worst 0.2041   lr 0.0007   p 590.54   eps 0.0189   mix 0.0165   time 46.84
+Epoch 885:  train loss 0.2097   train acc 0.2696   worst 0.2024   lr 0.0006   p 593.78   eps 0.0189   mix 0.0164   time 46.82
+Epoch 886:  train loss 0.2099   train acc 0.2702   worst 0.2029   lr 0.0006   p 597.05   eps 0.0189   mix 0.0164   time 46.93
+Epoch 887:  train loss 0.2091   train acc 0.2703   worst 0.2031   lr 0.0006   p 600.34   eps 0.0189   mix 0.0163   time 46.97
+Epoch 888:  train loss 0.2099   train acc 0.2707   worst 0.2027   lr 0.0006   p 603.64   eps 0.0189   mix 0.0162   time 46.89
+Epoch 889:  train loss 0.2080   train acc 0.2700   worst 0.2029   lr 0.0006   p 606.96   eps 0.0189   mix 0.0161   time 46.90
+Epoch 890:  train loss 0.2086   train acc 0.2699   worst 0.2028   lr 0.0006   p 610.30   eps 0.0189   mix 0.0160   time 47.00
+Epoch 891:  train loss 0.2089   train acc 0.2700   worst 0.2022   lr 0.0006   p 613.66   eps 0.0189   mix 0.0159   time 47.18
+Epoch 892:  train loss 0.2074   train acc 0.2698   worst 0.2030   lr 0.0006   p 617.03   eps 0.0189   mix 0.0158   time 47.00
+Epoch 893:  train loss 0.2082   train acc 0.2705   worst 0.2027   lr 0.0006   p 620.43   eps 0.0189   mix 0.0158   time 46.91
+Epoch 894:  train loss 0.2067   train acc 0.2709   worst 0.2049   lr 0.0005   p 623.84   eps 0.0189   mix 0.0157   time 46.97
+Epoch 895:  train loss 0.2072   train acc 0.2703   worst 0.2026   lr 0.0005   p 627.27   eps 0.0189   mix 0.0156   time 46.97
+Epoch 896:  train loss 0.2058   train acc 0.2704   worst 0.2044   lr 0.0005   p 630.73   eps 0.0189   mix 0.0155   time 47.01
+Epoch 897:  train loss 0.2047   train acc 0.2701   worst 0.2035   lr 0.0005   p 634.20   eps 0.0189   mix 0.0154   time 46.91
+Epoch 898:  train loss 0.2057   train acc 0.2705   worst 0.2034   lr 0.0005   p 637.68   eps 0.0189   mix 0.0154   time 46.92
+Epoch 899:  train loss 0.2057   train acc 0.2711   worst 0.2042   lr 0.0005   p 641.19   eps 0.0189   mix 0.0153   time 46.87
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 899:  clean acc 0.2844   certified acc 0.2289   time 98.44
+Calculating metrics for SortNet on test set
+Epoch 899:  clean acc 0.2381   certified acc 0.1716   time 9.94
+Epoch 900:  train loss 0.2072   train acc 0.2723   worst 0.2042   lr 0.0005   p 644.72   eps 0.0189   mix 0.0152   time 46.99
+Epoch 901:  train loss 0.2054   train acc 0.2717   worst 0.2042   lr 0.0005   p 648.27   eps 0.0189   mix 0.0151   time 46.78
+Epoch 902:  train loss 0.2044   train acc 0.2705   worst 0.2034   lr 0.0005   p 651.83   eps 0.0189   mix 0.0150   time 46.97
+Epoch 903:  train loss 0.2035   train acc 0.2703   worst 0.2043   lr 0.0005   p 655.42   eps 0.0189   mix 0.0150   time 46.96
+Epoch 904:  train loss 0.2031   train acc 0.2705   worst 0.2048   lr 0.0005   p 659.03   eps 0.0189   mix 0.0149   time 47.00
+Epoch 905:  train loss 0.2022   train acc 0.2701   worst 0.2044   lr 0.0004   p 662.65   eps 0.0189   mix 0.0148   time 46.89
+Epoch 906:  train loss 0.2025   train acc 0.2700   worst 0.2037   lr 0.0004   p 666.30   eps 0.0189   mix 0.0147   time 46.94
+Epoch 907:  train loss 0.2041   train acc 0.2715   worst 0.2045   lr 0.0004   p 669.96   eps 0.0189   mix 0.0147   time 46.90
+Epoch 908:  train loss 0.2020   train acc 0.2706   worst 0.2051   lr 0.0004   p 673.65   eps 0.0189   mix 0.0146   time 46.75
+Epoch 909:  train loss 0.2014   train acc 0.2697   worst 0.2042   lr 0.0004   p 677.36   eps 0.0189   mix 0.0145   time 46.77
+Epoch 910:  train loss 0.2005   train acc 0.2701   worst 0.2054   lr 0.0004   p 681.08   eps 0.0189   mix 0.0144   time 46.90
+Epoch 911:  train loss 0.2019   train acc 0.2714   worst 0.2042   lr 0.0004   p 684.83   eps 0.0189   mix 0.0143   time 46.95
+Epoch 912:  train loss 0.2006   train acc 0.2701   worst 0.2033   lr 0.0004   p 688.60   eps 0.0189   mix 0.0143   time 46.81
+Epoch 913:  train loss 0.1989   train acc 0.2700   worst 0.2051   lr 0.0004   p 692.39   eps 0.0189   mix 0.0142   time 46.89
+Epoch 914:  train loss 0.2002   train acc 0.2712   worst 0.2057   lr 0.0004   p 696.20   eps 0.0189   mix 0.0141   time 46.73
+Epoch 915:  train loss 0.2013   train acc 0.2714   worst 0.2046   lr 0.0004   p 700.03   eps 0.0189   mix 0.0141   time 46.69
+Epoch 916:  train loss 0.1998   train acc 0.2715   worst 0.2051   lr 0.0003   p 703.88   eps 0.0189   mix 0.0140   time 46.88
+Epoch 917:  train loss 0.1993   train acc 0.2704   worst 0.2049   lr 0.0003   p 707.75   eps 0.0189   mix 0.0139   time 46.86
+Epoch 918:  train loss 0.1991   train acc 0.2710   worst 0.2056   lr 0.0003   p 711.64   eps 0.0189   mix 0.0138   time 46.82
+Epoch 919:  train loss 0.1997   train acc 0.2714   worst 0.2045   lr 0.0003   p 715.56   eps 0.0189   mix 0.0138   time 46.81
+Epoch 920:  train loss 0.1980   train acc 0.2704   worst 0.2043   lr 0.0003   p 719.50   eps 0.0189   mix 0.0137   time 46.74
+Epoch 921:  train loss 0.1983   train acc 0.2712   worst 0.2053   lr 0.0003   p 723.46   eps 0.0189   mix 0.0136   time 46.81
+Epoch 922:  train loss 0.1978   train acc 0.2716   worst 0.2064   lr 0.0003   p 727.44   eps 0.0189   mix 0.0135   time 46.82
+Epoch 923:  train loss 0.1983   train acc 0.2716   worst 0.2055   lr 0.0003   p 731.44   eps 0.0189   mix 0.0135   time 46.86
+Epoch 924:  train loss 0.1980   train acc 0.2709   worst 0.2051   lr 0.0003   p 735.46   eps 0.0189   mix 0.0134   time 46.89
+Epoch 925:  train loss 0.1966   train acc 0.2703   worst 0.2047   lr 0.0003   p 739.51   eps 0.0189   mix 0.0133   time 46.79
+Epoch 926:  train loss 0.1957   train acc 0.2702   worst 0.2054   lr 0.0003   p 743.58   eps 0.0189   mix 0.0133   time 46.86
+Epoch 927:  train loss 0.1955   train acc 0.2710   worst 0.2063   lr 0.0003   p 747.67   eps 0.0189   mix 0.0132   time 46.81
+Epoch 928:  train loss 0.1955   train acc 0.2714   worst 0.2059   lr 0.0003   p 751.78   eps 0.0189   mix 0.0131   time 46.78
+Epoch 929:  train loss 0.1951   train acc 0.2702   worst 0.2055   lr 0.0002   p 755.92   eps 0.0189   mix 0.0131   time 46.78
+Epoch 930:  train loss 0.1961   train acc 0.2713   worst 0.2058   lr 0.0002   p 760.08   eps 0.0189   mix 0.0130   time 46.86
+Epoch 931:  train loss 0.1955   train acc 0.2712   worst 0.2061   lr 0.0002   p 764.26   eps 0.0189   mix 0.0129   time 46.90
+Epoch 932:  train loss 0.1956   train acc 0.2721   worst 0.2070   lr 0.0002   p 768.46   eps 0.0189   mix 0.0129   time 46.90
+Epoch 933:  train loss 0.1961   train acc 0.2718   worst 0.2059   lr 0.0002   p 772.69   eps 0.0189   mix 0.0128   time 46.91
+Epoch 934:  train loss 0.1948   train acc 0.2709   worst 0.2057   lr 0.0002   p 776.94   eps 0.0189   mix 0.0127   time 46.90
+Epoch 935:  train loss 0.1949   train acc 0.2722   worst 0.2069   lr 0.0002   p 781.22   eps 0.0189   mix 0.0127   time 46.83
+Epoch 936:  train loss 0.1943   train acc 0.2712   worst 0.2056   lr 0.0002   p 785.52   eps 0.0189   mix 0.0126   time 46.96
+Epoch 937:  train loss 0.1940   train acc 0.2719   worst 0.2065   lr 0.0002   p 789.84   eps 0.0189   mix 0.0125   time 46.87
+Epoch 938:  train loss 0.1928   train acc 0.2709   worst 0.2058   lr 0.0002   p 794.18   eps 0.0189   mix 0.0125   time 46.93
+Epoch 939:  train loss 0.1943   train acc 0.2726   worst 0.2065   lr 0.0002   p 798.55   eps 0.0189   mix 0.0124   time 46.88
+Epoch 940:  train loss 0.1940   train acc 0.2718   worst 0.2054   lr 0.0002   p 802.95   eps 0.0189   mix 0.0123   time 46.93
+Epoch 941:  train loss 0.1921   train acc 0.2711   worst 0.2069   lr 0.0002   p 807.36   eps 0.0189   mix 0.0123   time 46.95
+Epoch 942:  train loss 0.1915   train acc 0.2703   worst 0.2056   lr 0.0002   p 811.80   eps 0.0189   mix 0.0122   time 46.90
+Epoch 943:  train loss 0.1919   train acc 0.2708   worst 0.2062   lr 0.0002   p 816.27   eps 0.0189   mix 0.0121   time 46.89
+Epoch 944:  train loss 0.1920   train acc 0.2710   worst 0.2069   lr 0.0002   p 820.76   eps 0.0189   mix 0.0121   time 47.03
+Epoch 945:  train loss 0.1906   train acc 0.2708   worst 0.2068   lr 0.0001   p 825.28   eps 0.0189   mix 0.0120   time 46.80
+Epoch 946:  train loss 0.1920   train acc 0.2710   worst 0.2060   lr 0.0001   p 829.82   eps 0.0189   mix 0.0119   time 46.84
+Epoch 947:  train loss 0.1910   train acc 0.2717   worst 0.2070   lr 0.0001   p 834.38   eps 0.0189   mix 0.0119   time 46.88
+Epoch 948:  train loss 0.1916   train acc 0.2715   worst 0.2064   lr 0.0001   p 838.97   eps 0.0189   mix 0.0118   time 47.05
+Epoch 949:  train loss 0.1899   train acc 0.2711   worst 0.2071   lr 0.0001   p 843.59   eps 0.0189   mix 0.0118   time 46.82
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 949:  clean acc 0.2842   certified acc 0.2301   time 98.46
+Calculating metrics for SortNet on test set
+Epoch 949:  clean acc 0.2378   certified acc 0.1741   time 10.13
+Epoch 950:  train loss 0.1898   train acc 0.2706   worst 0.2058   lr 0.0001   p 848.23   eps 0.0189   mix 0.0117   time 47.04
+Epoch 951:  train loss 0.1915   train acc 0.2723   worst 0.2070   lr 0.0001   p 852.90   eps 0.0189   mix 0.0116   time 46.89
+Epoch 952:  train loss 0.1891   train acc 0.2707   worst 0.2066   lr 0.0001   p 857.59   eps 0.0189   mix 0.0116   time 46.80
+Epoch 953:  train loss 0.1899   train acc 0.2716   worst 0.2070   lr 0.0001   p 862.31   eps 0.0189   mix 0.0115   time 46.91
+Epoch 954:  train loss 0.1887   train acc 0.2713   worst 0.2077   lr 0.0001   p 867.05   eps 0.0189   mix 0.0115   time 46.91
+Epoch 955:  train loss 0.1879   train acc 0.2704   worst 0.2066   lr 0.0001   p 871.82   eps 0.0189   mix 0.0114   time 46.92
+Epoch 956:  train loss 0.1893   train acc 0.2712   worst 0.2060   lr 0.0001   p 876.62   eps 0.0189   mix 0.0113   time 46.88
+Epoch 957:  train loss 0.1897   train acc 0.2719   worst 0.2062   lr 0.0001   p 881.44   eps 0.0189   mix 0.0113   time 47.04
+Epoch 958:  train loss 0.1886   train acc 0.2714   worst 0.2065   lr 0.0001   p 886.29   eps 0.0189   mix 0.0112   time 46.89
+Epoch 959:  train loss 0.1896   train acc 0.2725   worst 0.2068   lr 0.0001   p 891.17   eps 0.0189   mix 0.0112   time 46.97
+Epoch 960:  train loss 0.1883   train acc 0.2708   worst 0.2059   lr 0.0001   p 896.07   eps 0.0189   mix 0.0111   time 46.78
+Epoch 961:  train loss 0.1884   train acc 0.2719   worst 0.2073   lr 0.0001   p 901.00   eps 0.0189   mix 0.0110   time 46.92
+Epoch 962:  train loss 0.1882   train acc 0.2715   worst 0.2062   lr 0.0001   p 905.96   eps 0.0189   mix 0.0110   time 46.90
+Epoch 963:  train loss 0.1887   train acc 0.2718   worst 0.2061   lr 0.0001   p 910.94   eps 0.0189   mix 0.0109   time 46.87
+Epoch 964:  train loss 0.1863   train acc 0.2706   worst 0.2070   lr 0.0001   p 915.96   eps 0.0189   mix 0.0109   time 46.91
+Epoch 965:  train loss 0.1871   train acc 0.2709   worst 0.2061   lr 0.0001   p 920.99   eps 0.0189   mix 0.0108   time 46.82
+Epoch 966:  train loss 0.1872   train acc 0.2717   worst 0.2070   lr 0.0001   p 926.06   eps 0.0189   mix 0.0108   time 46.83
+Epoch 967:  train loss 0.1874   train acc 0.2710   worst 0.2057   lr 0.0001   p 931.16   eps 0.0189   mix 0.0107   time 46.96
+Epoch 968:  train loss 0.1855   train acc 0.2710   worst 0.2068   lr 0.0001   p 936.28   eps 0.0189   mix 0.0106   time 46.71
+Epoch 969:  train loss 0.1869   train acc 0.2724   worst 0.2080   lr 0.0000   p 941.43   eps 0.0189   mix 0.0106   time 46.81
+Epoch 970:  train loss 0.1859   train acc 0.2716   worst 0.2067   lr 0.0000   p 946.61   eps 0.0189   mix 0.0105   time 46.93
+Epoch 971:  train loss 0.1850   train acc 0.2716   worst 0.2075   lr 0.0000   p 951.82   eps 0.0189   mix 0.0105   time 46.79
+Epoch 972:  train loss 0.1853   train acc 0.2710   worst 0.2066   lr 0.0000   p 957.06   eps 0.0189   mix 0.0104   time 46.73
+Epoch 973:  train loss 0.1847   train acc 0.2709   worst 0.2074   lr 0.0000   p 962.32   eps 0.0189   mix 0.0104   time 46.75
+Epoch 974:  train loss 0.1844   train acc 0.2714   worst 0.2072   lr 0.0000   p 967.62   eps 0.0189   mix 0.0103   time 46.86
+Epoch 975:  train loss 0.1852   train acc 0.2711   worst 0.2063   lr 0.0000   p 972.94   eps 0.0189   mix 0.0103   time 46.84
+Epoch 976:  train loss 0.1850   train acc 0.2715   worst 0.2061   lr 0.0000   p 978.29   eps 0.0189   mix 0.0102   time 46.90
+Epoch 977:  train loss 0.1849   train acc 0.2718   worst 0.2071   lr 0.0000   p 983.67   eps 0.0189   mix 0.0102   time 46.80
+Epoch 978:  train loss 0.1840   train acc 0.2716   worst 0.2082   lr 0.0000   p 989.09   eps 0.0189   mix 0.0101   time 46.85
+Epoch 979:  train loss 0.1848   train acc 0.2725   worst 0.2072   lr 0.0000   p 994.53   eps 0.0189   mix 0.0101   time 46.83
+Epoch 980:  train loss 0.1852   train acc 0.2716   worst 0.2064   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.51
+Epoch 981:  train loss 0.1837   train acc 0.2716   worst 0.2078   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.96
+Epoch 982:  train loss 0.1840   train acc 0.2713   worst 0.2073   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.75
+Epoch 983:  train loss 0.1835   train acc 0.2715   worst 0.2069   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.51
+Epoch 984:  train loss 0.1847   train acc 0.2726   worst 0.2070   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.61
+Epoch 985:  train loss 0.1841   train acc 0.2710   worst 0.2063   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.79
+Epoch 986:  train loss 0.1834   train acc 0.2713   worst 0.2075   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.73
+Epoch 987:  train loss 0.1825   train acc 0.2709   worst 0.2080   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.69
+Epoch 988:  train loss 0.1835   train acc 0.2709   worst 0.2069   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.71
+Epoch 989:  train loss 0.1844   train acc 0.2718   worst 0.2077   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.53
+Epoch 990:  train loss 0.1847   train acc 0.2715   worst 0.2066   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.44
+Epoch 991:  train loss 0.1833   train acc 0.2710   worst 0.2074   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.46
+Epoch 992:  train loss 0.1856   train acc 0.2730   worst 0.2082   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.69
+Epoch 993:  train loss 0.1836   train acc 0.2716   worst 0.2073   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 18.81
+Epoch 994:  train loss 0.1842   train acc 0.2722   worst 0.2080   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.84
+Epoch 995:  train loss 0.1841   train acc 0.2711   worst 0.2061   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.81
+Epoch 996:  train loss 0.1839   train acc 0.2702   worst 0.2055   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 18.57
+Epoch 997:  train loss 0.1852   train acc 0.2727   worst 0.2077   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.46
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 997:  clean acc 0.2834   certified acc 0.2302   time 98.15
+Calculating metrics for SortNet on test set
+Epoch 997:  clean acc 0.2382   certified acc 0.1751   time 9.93
+Epoch 998:  train loss 0.1845   train acc 0.2716   worst 0.2068   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.68
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 998:  clean acc 0.2828   certified acc 0.2301   time 98.28
+Calculating metrics for SortNet on test set
+Epoch 998:  clean acc 0.2385   certified acc 0.1757   time 9.93
+Epoch 999:  train loss 0.1840   train acc 0.2720   worst 0.2075   lr 0.0000   p inf   eps 0.0189   mix 0.0100   time 17.80
+Preparing for testing (updating running mean)
+Calculating metrics for SortNet on training set
+Epoch 999:  clean acc 0.2846   certified acc 0.2309   time 98.25
+Calculating metrics for SortNet on test set
+Epoch 999:  clean acc 0.2385   certified acc 0.1751   time 9.90
+============Training completes===========
+Generate adversarial examples on test dataset
+adversarial attack acc 20.0300
+Calculating test acc and certified test acc
+Epoch 1000:  clean acc 0.2385   certified acc 0.1751   time 9.94

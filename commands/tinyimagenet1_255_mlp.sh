@@ -1,0 +1,1 @@
+python main.py --dataset TinyImageNet --model 'SortHybridModel(depth=7,width=5120,hidden=512,scalar=True,dropout=0.7)' --loss 'ce_hinge(lam0=1.0,lam_end=0.01)' --eps-smooth 0.4 --p-start 8 --p-end 1000 --epochs 0,500,100,980,1000 --eps-test 0.00392 --eps-train 0.00431 -b 512 --lr 0.02 --wd 0.02 --gpu 0

@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0,1 python main.py --dataset ImageNet64 --model 'SortHybridModel2(depth=7,width=5120,hidden=2048,scalar=True,dropout=0.7,stride=4)' --loss 'ce_hinge(lam0=1.0,lam_end=0.01)' --eps-smooth 0.4 --p-start 8 --p-end 1000 --epochs 0,200,50,290,300 --eps-test 0.00392 --eps-train 0.00431 -b 1024 --lr 0.01 --wd 0.02 --dist-url 'tcp://localhost:23458'

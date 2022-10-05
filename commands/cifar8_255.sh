@@ -1,0 +1,1 @@
+python main.py --dataset CIFAR10 --model 'SortMLPModel(depth=6,width=5120,scalar=True,dropout=0.85)' --loss 'mixture(lam0=0.2,lam_end=0.002)' --p-start 8 --p-end 1000 --epochs 0,0,200,2950,3000 --eps-test 0.03137 --eps-train 0.09411 -b 512 --lr 0.02 --wd 0.02 --gpu 0

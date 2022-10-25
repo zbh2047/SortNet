@@ -4,7 +4,7 @@
 
 This is the official repo for training SortNet, a novel 1-Lipschitz neural network with theoretical guarantees for its robustness and expressive power. SortNet generalizes [L-infinity distance net](https://github.com/zbh2047/L_inf-dist-net) and can be efficiently trained to achieve certified L-infinity robustness for free!
 
-[Our paper](https://arxiv.org/abs/2210.01787) has been accepted for NeurIPS 2022.
+[Our paper](https://arxiv.org/abs/2210.01787) has been accepted for NeurIPS 2022 (Oral!).
 
 ## Dependencies
 
@@ -13,6 +13,8 @@ This is the official repo for training SortNet, a novel 1-Lipschitz neural netwo
 
 
 ## Getting Started with the Code
+
+This organization of this repo is the same as [L_inf-dist-net-v2](https://github.com/zbh2047/L_inf-dist-net-v2).
 
 ### Installation
 
@@ -24,7 +26,7 @@ python setup.py install --user
 
 ### Reproducing SOTA results
 
-We provide complete training scripts to reproduce the results in our paper. These scripts are in the `command` folder. 
+We provide complete training scripts to reproduce the results in our paper. These scripts are in the `commands` folder. 
 
 For example, to reproduce the result of SortNet+MLP architecture on CIFAR-10 with perturbation eps=2/255, simply run
 
@@ -68,7 +70,7 @@ Please contact [zhangbohang@pku.edu.cn](zhangbohang@pku.edu.cn)  if you have any
 
 ```
 @inproceedings{zhang2022rethinking,
-      title={Rethinking Lipschitz Neural Networks for Certified L-infinity Robustness}, 
+      title={Rethinking Lipschitz Neural Networks and Certified Robustness: A Boolean Function Perspective}, 
       author={Bohang Zhang and Du Jiang and Di He and Liwei Wang},
       booktitle={Advances in Neural Information Processing Systems},
       year={2022},
